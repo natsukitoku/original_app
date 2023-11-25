@@ -13,14 +13,16 @@ use Illuminate\Http\Request;
 class MyPageController extends Controller
 {
 
+    // マイページ
     public function mypage() {
         $user = Auth::user();
 
         return view('mypage.mypage', compact('user'));
     }
 
+    // パスワード更新機能
     public function update_password(Request $request) {
-        $validateDate = $request->validate([
+            $request->validate([
             'password' => 'required|confirmed',
         ]);
 
@@ -36,6 +38,7 @@ class MyPageController extends Controller
             return to_route('mypage');
     }
 
+    // パスワード更新ページ
     public function edit_password()
     {
         return view('mypage.edit_password');
@@ -47,12 +50,13 @@ class MyPageController extends Controller
         return view('mypage.edit_acount', compact('user'));
     }
 
+    // 登録情報更新機能
     public function update_account(Request $request, User $user) {
         $user = Auth::user();
 
         $user->name = $request->input('name') ? $request->input('name') : $user->name;
         $user->email = $request->input('email') ? $request->input('email') : $user->email;
-        $user->update();
+        $user->save();
 
         return to_route('mypage');
     }
@@ -65,14 +69,18 @@ class MyPageController extends Controller
         return view('mypage.favorite', compact('favorites'));
     }
 
-    // public function store_abroading_plans(Request $request, User $user) {
-    //     // $user = Auth::user();
+    public function create_abroading_plans()
+    {
+        return view('mypage.plans');
+    }
 
-    //     $abroadingplan = new AbroadingPlan;
-    //     $abroadingplan->user_id = Auth::user();
-    //     $abroadingplan->city_id = $request->city_name;
-    //     $abroadingplan->from_date = $request->
+    public function store_abroading_plans(Request $request, User $user, City $city) {
 
+        $abroadingplan = new AbroadingPlan();
+        $abroadingplan->user_id = Auth::user();
+        $abroadingplan->city_id = $city->id;
+        $abroadingplan->save();
 
-    // }
+        return view('mypage.abroading_plan', compact('abroadingplan'));
+    }
 }
