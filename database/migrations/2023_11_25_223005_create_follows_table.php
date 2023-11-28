@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('followee_id')->references('id')->on('users');
+            $table->unsignedBigInteger('follower_id');
+            $table->unsignedBigInteger('followee_id');
+            $table->foreign('follower_id')->references('id')->on('users');
+            $table->foreign('followee_id')->references('id')->on('users');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('follows');
     }
 };

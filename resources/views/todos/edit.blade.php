@@ -8,7 +8,7 @@
     <a href="{{route('todos.index')}}">戻る</a>
 </div>
 <div>
-    <form method="PUT" action="{{route('todos.create')}}">
+    <form action="PUT">
         @csrf
         <div style="margin-top: 32px">
             <label for="priority">優先度選択</label>

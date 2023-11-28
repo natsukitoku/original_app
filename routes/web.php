@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\TodoController;
@@ -30,6 +31,7 @@ Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage/edit', 'edit_account')->name('mypage.edit');
     Route::put('/mypage', 'update_account')->name('mypage.update');
     Route::get('/mypage/password/edit', 'edit_password')->name('mypage.edit_password');
+    Route::get('/mypage/email/edit', 'edit_email')->name('mypage.edit_email');
     Route::put('/mypage/password', 'update_password')->name('mypage.update_password');
     Route::get('/mypage/favorites', 'favorite')->name('mypage.favorites');
     Route::get('/mypage/plans', 'create_abroading_plans')->name('mypage.create.plans');
@@ -55,7 +57,8 @@ Route::controller(TodoController::class)->group(function () {
     Route::delete('/todos/{todo}', 'destroy')->name('todos.destroy');
 });
 
-Route::controller(FriendController::class)->group(function () {
-    Route::get('/friends', 'index')->name('friends.index');
+Route::controller(FollowController::class)->group(function () {
+    Route::get('/follows', 'index')->name('follows.index');
+    Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
 
 });

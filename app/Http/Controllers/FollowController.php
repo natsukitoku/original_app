@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Friend;
+use App\Models\Follow;
 use Illuminate\Http\Request;
 
-class FriendController extends Controller
+class FollowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class FriendController extends Controller
      */
     public function index()
     {
-        $friends = Friend::latest()->get();
+        $follows = Follow::latest()->get();
 
-        return view('friends.index', compact('friends'));
+        return view('follows.index', compact('follows'));
     }
 
     /**
@@ -43,21 +43,21 @@ class FriendController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Follow  $follow
      * @return \Illuminate\Http\Response
      */
-    public function show(Friend $friend)
+    public function show(Follow $follow)
     {
-        // 
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Follow  $follow
      * @return \Illuminate\Http\Response
      */
-    public function edit(Friend $friend)
+    public function edit(Follow $follow)
     {
         //
     }
@@ -66,10 +66,10 @@ class FriendController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Follow  $follow
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Friend $friend)
+    public function update(Request $request, Follow $follow)
     {
         //
     }
@@ -77,11 +77,16 @@ class FriendController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Friend  $friend
+     * @param  \App\Models\Follow  $follow
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Friend $friend)
+    public function destroy(Follow $follow)
     {
         //
+    }
+
+    public function search_friends()
+    {
+        return view('follows.search_friends');
     }
 }

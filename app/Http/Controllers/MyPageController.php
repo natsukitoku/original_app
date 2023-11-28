@@ -50,6 +50,12 @@ class MyPageController extends Controller
         return view('mypage.edit_acount', compact('user'));
     }
 
+    // メールアドレス変更ページ
+    public function edit_email()
+    {
+        return view('mypage.edit_email');
+    }
+
     // 登録情報更新機能
     public function update_account(Request $request, User $user) {
         $user = Auth::user();
@@ -69,9 +75,10 @@ class MyPageController extends Controller
         return view('mypage.favorite', compact('favorites'));
     }
 
-    public function create_abroading_plans()
+    public function create_abroading_plans(Country $country)
     {
-        return view('mypage.plans');
+        $countries = Country::all();
+        return view('mypage.plans', compact('countries'));
     }
 
     public function store_abroading_plans(Request $request, User $user, City $city) {

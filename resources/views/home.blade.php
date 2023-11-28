@@ -21,7 +21,7 @@ body { margin: 0; padding: 0; }
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     }
 </style>
-<div class="container">
+<div class="container" style="margin: 20px">
     <h1>Hello!</h1>
     <h2>留学まで残り〇〇日!</h2>
 </div>

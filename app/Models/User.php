@@ -64,13 +64,13 @@ class User extends Authenticatable
         return $this->hasMany(AbroadingPlan::class);
     }
 
-    public function followers()
+    public function followees()
     {
-        return $this->hasMany(Friend::class);
+        return $this->belongsToMany(Follow::class, 'follows', 'follower_id', 'followee_id');
     }
 
-    public function followee()
+    public function followers()
     {
-        return $this->hasOne(Friend::class);
+        return $this->belongsToMany(Follow::class, 'follows', 'followee_id', 'follower_id');
     }
 }
