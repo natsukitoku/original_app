@@ -6,12 +6,17 @@
     <h1>つぶやきページ</h1>
 </div>
 <div>
+    <a href="{{route('tweets.create')}}">つぶやく</a>
     <a href="{{route('follows.search_friends')}}">新しい友達を探す</a>
 </div>
 <div style="margin: 24px">
+    @foreach ($tweets as $tweet)
     <div style="border: solid 1px">
-        <p>アカウント名</p>
-        <p>内容</p>
+        <p>ユーザー名</p>
+        <a href="{{route('tweets.edit', 'tweet')}}">編集</a>
+        <a href="{{route('tweets.destroy', 'tweet')}}">削除</a>
+        <p>{{$tweet->content}}</p>
     </div>
+    @endforeach
     <a href="#">コメントする</a>
 </div>

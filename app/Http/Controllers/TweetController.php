@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,12 +45,12 @@ class TweetController extends Controller
         ]);
 
         $tweet =new Tweet();
-        $tweet->user_id = Auth::id();
+        $tweet->user_id = Auth::user()->id;
         $tweet->content = $request->input('content');
         // $tweet->image
         $tweet->save();
 
-        return to_route('tweets.index')->with('flash_message', 'つぶやきが完了しました。');
+        return to_route('tweets.index')->with('flash_message', 'つぶやきが完了しました!');
     }
 
     /**
@@ -58,9 +59,9 @@ class TweetController extends Controller
      * @param  \App\Models\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function show(Tweet $tweet)
+    public function show($id)
     {
-        return view('tweets.show', compact('tweet'));
+        return view('tweets.show');
     }
 
     /**
@@ -69,9 +70,9 @@ class TweetController extends Controller
      * @param  \App\Models\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tweet $tweet)
+    public function edit($id)
     {
-        return view('tweets.edit', compact('tweet'));
+        return view('tweets.edit');
     }
 
     /**

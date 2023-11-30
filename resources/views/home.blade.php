@@ -25,7 +25,25 @@ body { margin: 0; padding: 0; }
     <h1>Hello!</h1>
     <h2>留学まで残り〇〇日!</h2>
 </div>
-<div id="map"></div>
+<div id="map" style="height: 420px; margin-top: 192px"></div>
+<div style="margin-top: 480px">
+    <table style="margin: 24px">
+        <tr>
+            <th>国名</th>
+            <th>応募可能時期</th>
+            <th>年間発給数</th>
+        </tr>
+        @foreach ($countries as $country)
+        <tr>
+            <td>{{$country->name}}</td>
+            {{-- <td>{{$visa_information->applyterm}}</td>
+            <td>{{$visa_information->people}}</td> --}}
+        </tr>
+        @endforeach
+
+
+    </table>
+</div>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoidG9rdW5hZ2FuYXRzdWtpIiwiYSI6ImNscGRqZmtndTA3bG0yam8wOWQzMndiZXEifQ.xAJjpKoHMgEGxBOuveFTvA';
     const map = new mapboxgl.Map({

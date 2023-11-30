@@ -21,6 +21,13 @@
         @component('components.header')
         @endcomponent
 
+        <!-- フラッシュメッセージ -->
+        @if (session('flash_message'))
+        <div class="flash_message" style="margin: 80px">
+             {{session('flash_message')}}
+        </div>
+        @endif
+
         <main  class="py-4 m-5">
             @yield('content')
         </main>

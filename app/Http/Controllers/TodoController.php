@@ -28,6 +28,7 @@ class TodoController extends Controller
      */
     public function create()
     {
+
         return view('todos.create');
     }
 
@@ -40,17 +41,22 @@ class TodoController extends Controller
     public function store(Request $request, AbroadingPlan $abroading_plan)
     {
         $request->validate([
+            'priority_num' => 'required',
+            'duedate' => 'required',
             'content' => 'required',
         ]);
 
         $todo = new Todo();
-        $todo->user_id = Auth::id();
+        $todo->user_id = Auth::user()->id;
+        $todo->priority_num = $request->input('priority_num');
+        $todo->duedate = $request->input('duedate');
         $todo->content = $request->input('content');
         $todo->abroading_plan_id = $abroading_plan->id;
         $todo->done = false;
+        $todo->is_public = $request->boolean('is_public');
         $todo->save();
 
-        return redirect()->route('todos.index');
+        return redirect()->route('todos.index')->with('flash_massege','Todoリストの作成が完了しました!');
     }
 
 

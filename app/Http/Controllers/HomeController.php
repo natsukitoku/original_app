@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Country;
+use App\Models\VisaInformation;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Country $country, VisaInformation $visaInformation)
     {
-        return view('home');
+        $countries = Country::all();
+
+        return view('home', compact('countries'));
     }
 }

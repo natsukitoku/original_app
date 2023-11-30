@@ -14,28 +14,11 @@ class MyPageController extends Controller
 {
 
     // マイページ
-    public function mypage() {
+    public function mypage()
+    {
         $user = Auth::user();
 
         return view('mypage.mypage', compact('user'));
-    }
-
-    // パスワード更新機能
-    public function update_password(Request $request) {
-            $request->validate([
-            'password' => 'required|confirmed',
-        ]);
-
-            $user = Auth::user();
-
-            if($request->input('password') == $request->input('password_confirmation')) {
-                $user->password = bcrypt($request->input('password'));
-                $user->update();
-            } else {
-                return to_route('mypage.edit_password');
-            }
-
-            return to_route('mypage');
     }
 
     // パスワード更新ページ
@@ -44,7 +27,28 @@ class MyPageController extends Controller
         return view('mypage.edit_password');
     }
 
-    public function edit_account(User $user) {
+    // パスワード更新機能
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if ($request->input('password') == $request->input('password_confirmation')) {
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+        } else {
+            return to_route('mypage.edit_password');
+        }
+
+        return to_route('mypage')->with('flash_massage', 'パスワードを変更しました。');
+    }
+
+
+    public function edit_account(User $user)
+    {
         $user = Auth::user();
 
         return view('mypage.edit_acount', compact('user'));
@@ -56,8 +60,29 @@ class MyPageController extends Controller
         return view('mypage.edit_email');
     }
 
+    // メールアドレス更新機能
+    public function update_email(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if ($request->input('email') == $request->input('email_confirmation')) {
+            $user->email = bcrypt($request->input('email'));
+            $user->save();
+        } else {
+            return to_route('mypage.edit_email');
+        }
+
+        return to_route('mypage')->with('flash_massage', 'メールアドレスを変更しました。');
+    }
+
+
     // 登録情報更新機能
-    public function update_account(Request $request, User $user) {
+    public function update_account(Request $request, User $user)
+    {
         $user = Auth::user();
 
         $user->name = $request->input('name') ? $request->input('name') : $user->name;
@@ -67,7 +92,8 @@ class MyPageController extends Controller
         return to_route('mypage');
     }
 
-    public function favorite() {
+    public function favorite()
+    {
         $user = Auth::user();
 
         $favorites = $user->favorites(Country::class)->get();
@@ -78,16 +104,21 @@ class MyPageController extends Controller
     public function create_abroading_plans(Country $country)
     {
         $countries = Country::all();
-        return view('mypage.plans', compact('countries'));
+        $cities = City::all();
+        return view('mypage.plans', compact('countries', 'cities'));
     }
 
-    public function store_abroading_plans(Request $request, User $user, City $city) {
+    public function store_abroading_plans(Request $request)
+    {
+        // TODO　バリデーション処理
 
         $abroadingplan = new AbroadingPlan();
-        $abroadingplan->user_id = Auth::user();
-        $abroadingplan->city_id = $city->id;
+        $abroadingplan->user_id = Auth::id();
+        $abroadingplan->city_id = $request->input('city_id');
+        $abroadingplan->from_date = $request->input('from_date');
+        $abroadingplan->end_date = $request->input('end_date');
         $abroadingplan->save();
 
-        return view('mypage.abroading_plan', compact('abroadingplan'));
+        return to_route('mypage');
     }
 }

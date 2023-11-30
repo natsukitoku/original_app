@@ -1,21 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="margin: 80px">
-    <h1>パスワードの変更</h1>
-    <a href="{{route('mypage.edit')}}">戻る</a>
-</div>
-
 <div>
-    <div>
-        <p>現在のパスワード</p>
-        <input type="text">
-    </div>
+    <h1>パスワード変更</h1>
+    <form method="POST" action="{{ route('mypage.update_password') }}">
+        @csrf
+        @method('PUT')
+        <div>
+            <label for="password">新しいパスワード</label>
+            <div>
+                <input id="password" type="password" @error('password') id-invalid
+                @enderror" name="password" required autocomplete="new-password">
 
-    <div>
-        <p>新しいパスワード</p>
-        <input type="text">
-    </div>
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
 
-    <button type="submit">変更</button>
+        <div>
+            <label for="password-confirm">確認用</label>
+
+            <div>
+                <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
+            </div>
+        </div>
+
+        <div>
+            <button type="submit">
+                パスワード更新
+            </button>
+        </div>
+    </form>
 </div>
+@endsection
+

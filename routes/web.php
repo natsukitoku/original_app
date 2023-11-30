@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\FollowController;
-use App\Http\Controllers\FriendController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TweetController;
@@ -33,6 +32,7 @@ Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage/password/edit', 'edit_password')->name('mypage.edit_password');
     Route::get('/mypage/email/edit', 'edit_email')->name('mypage.edit_email');
     Route::put('/mypage/password', 'update_password')->name('mypage.update_password');
+    Route::put('/mypage/email', 'update_email')->name('mypage.update_email');
     Route::get('/mypage/favorites', 'favorite')->name('mypage.favorites');
     Route::get('/mypage/plans', 'create_abroading_plans')->name('mypage.create.plans');
     Route::post('/mypage/plans', 'store_abroading_plans')->name('mypage.plans');

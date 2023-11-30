@@ -8,11 +8,14 @@
     <a href="{{route('todos.index')}}">戻る</a>
 </div>
 <div>
-    <form method="PUT" action="{{route('todos.create')}}">
+    <form method="POST" action="{{route('todos.store')}}">
         @csrf
         <div style="margin-top: 32px">
-            <label for="priority">優先度選択</label>
-            <select name="priority-num" id="priority-num">
+            @error('priority_num')
+            <strong>優先度を選択してください</strong>
+            @enderror
+            <label for="priority_num">優先度選択</label>
+            <select name="priority_num" id="priority_num">
                 <option hidden>選択して下さい</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -27,10 +30,16 @@
             </select>
         </div>
         <div>
-            <label for="date">期限</label>
-            <input type="date" id="date" name="duedate" value="">
+            @error('duedate')
+            <strong>期限を選択してください。</strong>
+            @enderror
+            <label for="duedate">期限</label>
+            <input type="date" id="duedate" name="duedate" value="">
         </div>
         <div style="margin: 32px">
+            @error('content')
+            <strong>タスクを入力してください。</strong>
+            @enderror
             <textarea name="content" id="content" cols="30" rows="10" placeholder="タスク内容"></textarea>
         </div>
         <div style="display: flex">
@@ -45,3 +54,4 @@
         </div>
         <button type="submit">登録</button>
     </form>
+</div>
