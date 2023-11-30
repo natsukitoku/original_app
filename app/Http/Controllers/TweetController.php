@@ -18,7 +18,7 @@ class TweetController extends Controller
     // 一覧ページ
     public function index()
     {
-        $tweets = Tweet::latest()->get();
+        $tweets = Tweet::latest()->with('user')->get();
         return view('tweets.index', compact('tweets'));
     }
 
@@ -44,7 +44,7 @@ class TweetController extends Controller
             'content' => 'required',
         ]);
 
-        $tweet =new Tweet();
+        $tweet = new Tweet();
         $tweet->user_id = Auth::user()->id;
         $tweet->content = $request->input('content');
         // $tweet->image

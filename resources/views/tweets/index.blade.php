@@ -12,7 +12,7 @@
 <div style="margin: 24px">
     @foreach ($tweets as $tweet)
     <div style="border: solid 1px">
-        <p>ユーザー名</p>
+        <p>{{$tweet->user->name}}</p>
         <a href="{{route('tweets.edit', 'tweet')}}">編集</a>
         <a href="{{route('tweets.destroy', 'tweet')}}">削除</a>
         <p>{{$tweet->content}}</p>
