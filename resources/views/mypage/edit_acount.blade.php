@@ -7,7 +7,14 @@
 </div>
 <div>
     <ul>
-        <li><a href="{{route('mypage.edit_password')}}">パスワードの変更</a></li>
-        <li><a href="{{route('mypage.edit_email')}}">メールアドレスの変更</a></li>
+
+        <!-- TODO 基本情報編集ページ -->
+
+        <li>
+            <a href="{{route('mypage.edit_password')}}">パスワードの変更</a>
+        </li>
+        <li>
+            <a href="{{route('mypage.edit_email')}}">メールアドレスの変更</a>
+        </li>
     </ul>
 </div>

@@ -101,11 +101,25 @@ class MyPageController extends Controller
         return view('mypage.favorite', compact('favorites'));
     }
 
+    public function index_abroading_plans()
+    {
+        
+        return view('mypage.index_plans');
+    }
+
     public function create_abroading_plans(Country $country)
+    {
+        $countries = Country::with('cities')->get();
+
+        return view('mypage.create_plans', compact('countries'));
+    }
+
+    public function edit_abroading_plans(Country $countries)
     {
         $countries = Country::all();
         $cities = City::all();
-        return view('mypage.plans', compact('countries', 'cities'));
+
+        return view('mypage.edit_plans', compact('countries', 'cities'));
     }
 
     public function store_abroading_plans(Request $request)
@@ -119,6 +133,6 @@ class MyPageController extends Controller
         $abroadingplan->end_date = $request->input('end_date');
         $abroadingplan->save();
 
-        return to_route('mypage');
+        return to_route('mypage.index.plans');
     }
 }

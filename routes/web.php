@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage', 'mypage')->name('mypage');
@@ -34,8 +34,10 @@ Route::controller(MyPageController::class)->group(function () {
     Route::put('/mypage/password', 'update_password')->name('mypage.update_password');
     Route::put('/mypage/email', 'update_email')->name('mypage.update_email');
     Route::get('/mypage/favorites', 'favorite')->name('mypage.favorites');
-    Route::get('/mypage/plans', 'create_abroading_plans')->name('mypage.create.plans');
+    Route::get('/mypage/plans', 'index_abroading_plans')->name('mypage.index.plans');
+    Route::get('/mypage/plans/create', 'create_abroading_plans')->name('mypage.create.plans');
     Route::post('/mypage/plans', 'store_abroading_plans')->name('mypage.plans');
+    Route::get('mypage/plans/edit', 'edit_abroading_plans')->name('mypage.edit.plans');
 });
 
 Route::controller(TweetController::class)->group(function () {

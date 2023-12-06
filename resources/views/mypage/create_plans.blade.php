@@ -10,19 +10,15 @@
         @csrf
         <div style="margin: 24px">
             <label for="countries">国名選択</label>
-            <select name="country_id" id="countries">
+            <select id="cities" name='city_id'>
                 @foreach ($countries as $country)
-                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                  <optgroup label="{{$country->name}}">
+                    @foreach ($country->cities as $city)
+                      <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
+                  </optgroup>
                 @endforeach
-            </select>
-        </div>
-        <div style="margin: 24px">
-            <label for="city">都市名</label>
-            <select name="city_id" id="cities">
-                @foreach ($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
+              </select>
         </div>
         <div style="margin: 24px">
             <div style="margin-bottom: 8px">
