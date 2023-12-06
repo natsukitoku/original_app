@@ -26,10 +26,12 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(AbroadingPlan $abroading_plan)
     {
+        $user = Auth::user();
+        $abroading_plans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
-        return view('todos.create');
+        return view('todos.create', compact('user', 'abroading_plans'));
     }
 
     /**
@@ -47,7 +49,7 @@ class TodoController extends Controller
         ]);
 
         $todo = new Todo();
-        $todo->user_id = Auth::user()->id;
+        $todo->user_id = Auth::id();
         $todo->priority_num = $request->input('priority_num');
         $todo->duedate = $request->input('duedate');
         $todo->content = $request->input('content');
@@ -55,6 +57,8 @@ class TodoController extends Controller
         $todo->done = false;
         $todo->is_public = $request->boolean('is_public');
         $todo->save();
+
+
 
         return redirect()->route('todos.index')->with('flash_massege','Todoリストの作成が完了しました!');
     }

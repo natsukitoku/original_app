@@ -103,7 +103,7 @@ class MyPageController extends Controller
 
     public function index_abroading_plans()
     {
-        
+
         return view('mypage.index_plans');
     }
 
@@ -124,7 +124,11 @@ class MyPageController extends Controller
 
     public function store_abroading_plans(Request $request)
     {
-        // TODO　バリデーション処理
+        $request->validate([
+            'city_id' => 'required',
+            'from_date' => 'required',
+            'end_date' => 'required',
+        ]);
 
         $abroadingplan = new AbroadingPlan();
         $abroadingplan->user_id = Auth::id();

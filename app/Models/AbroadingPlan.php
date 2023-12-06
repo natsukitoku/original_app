@@ -14,7 +14,7 @@ class AbroadingPlan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function cities()
+    public function city()
     {
         return $this->belongsTo(City::class);
     }

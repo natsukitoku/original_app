@@ -14,11 +14,11 @@ class FollowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Follow $followee)
     {
-        $follows = Follow::latest()->get();
+        $followees = Follow::where('follower_id', '=', Auth::id())->get();
 
-        return view('follows.index', compact('follows'));
+        return view('follows.index', compact('followees'));
     }
 
     /**
@@ -86,6 +86,7 @@ class FollowController extends Controller
     {
         //
     }
+
 
     public function search_friends()
     {

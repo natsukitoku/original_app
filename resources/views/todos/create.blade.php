@@ -36,6 +36,18 @@
             <label for="duedate">期限</label>
             <input type="date" id="duedate" name="duedate" value="">
         </div>
+        <div>
+            @error('city_id')
+            <strong>紐付ける留学先を選択してください。</strong>
+            @enderror
+            <label for="abroading_plan">留学先</label>
+            <select name="abroading_plan" id="abroading_plan">
+                @foreach ($abroading_plans as $abroading_plan)
+                <option value="{{$abroading_plan->id}}">{{$abroading_plan->city->name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
         <div style="margin: 32px">
             @error('content')
             <strong>タスクを入力してください。</strong>
@@ -43,15 +55,10 @@
             <textarea name="content" id="content" cols="30" rows="10" placeholder="タスク内容"></textarea>
         </div>
         <div style="display: flex">
-            <div style="margin-left: 16px">
-                <input type="checkbox" name="public" id="public" checked>
-                <label for="public">公開</label>
-            </div>
-            <div style="margin-left: 32px">
-                <input type="checkbox" name="private" id="private">
-                <label for="private">非公開</label>
-            </div>
+                <label for="public"><input type="radio" name="radio" value="is_public">公開</label>
+                <label for="private"><input type="radio" name="radio" value="private">非公開</label>
         </div>
         <button type="submit">登録</button>
     </form>
 </div>
+@endsection
