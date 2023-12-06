@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
@@ -87,6 +89,17 @@ class FollowController extends Controller
 
     public function search_friends()
     {
-        return view('follows.search_friends');
+        $users = User::where('id', '!=', Auth::id())->get();
+
+        return view('follows.search_friends', compact('users'));
+    }
+
+    public function register_friends(Request $request)
+    {
+        $followee_id = $request->input('followee_id');
+        $user = Auth::user();
+        $user->followees()->attach($followee_id);
+
+        return to_route('follows.search_friends');
     }
 }

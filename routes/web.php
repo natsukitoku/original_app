@@ -62,5 +62,5 @@ Route::controller(TodoController::class)->group(function () {
 Route::controller(FollowController::class)->group(function () {
     Route::get('/follows', 'index')->name('follows.index');
     Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
-
+    Route::post('/follows/follow', 'register_friends')->name('follows.follow');
 });
