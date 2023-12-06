@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="margin-top: 80px; margin-bottom: 24px">
-    <h1>Todoリストの作成</h1>
+    <h1>Todoリストの編集</h1>
 </div>
 <div>
     <a href="{{route('todos.index')}}">戻る</a>

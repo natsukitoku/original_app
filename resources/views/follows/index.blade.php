@@ -10,7 +10,7 @@
 <div>
     <ul>
         @foreach ($followees as $followee)
-        <li>{{$followee->id}}</li>
+        <li>{{$followee->followee_id}}</li>
         @endforeach
     </ul>
 </div>

@@ -92,6 +92,7 @@ class MyPageController extends Controller
         return to_route('mypage');
     }
 
+    // 気になる国登録機能
     public function favorite()
     {
         $user = Auth::user();
@@ -101,10 +102,12 @@ class MyPageController extends Controller
         return view('mypage.favorite', compact('favorites'));
     }
 
+    // 留学先表示
     public function index_abroading_plans()
     {
+        $abroadingplans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
-        return view('mypage.index_plans');
+        return view('mypage.index_plans', compact('abroadingplans'));
     }
 
     public function create_abroading_plans(Country $country)

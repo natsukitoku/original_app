@@ -9,12 +9,12 @@ class Todo extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function abroading_plans()
+    public function abroading_plan()
     {
         return $this->belongsTo(AbroadingPlan::class);
     }

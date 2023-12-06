@@ -11,15 +11,24 @@
     {{-- @if () --}}
 
     {{-- @endif --}}
-    {{-- @foreach ($todos as $todo) --}}
+    @foreach ($todos as $todo)
     <div style="border: solid 1px; margin: 32px">
+        <h5>留学先:{{$todo->abroading_plan->city->name}}</h5>
+        <a href="{{route('todos.edit', $todo)}}">編集</a>
+        {{-- <form action="{{route('todos.destroy', $todo)}}" method="DELETE">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" value="{{$todo->id}}">
+            <button type="submit">削除</button>
+        </form> --}}
         <div style="margin-top: 32px; display: flex">
-            <p style="margin-right: 8px">優先度:</p>
-            <p>期限:</p>
+            <p style="margin-right: 8px">優先度:{{$todo->priority_num}}</p>
+            <p>期限:{{$todo->duedate}}</p>
         </div>
         <div style="margin: 32px">
-            <h4>内容</h4>
+            <h4>{{$todo->content}}</h4>
         </div>
     </div>
-    {{-- @endforeach --}}
+    @endforeach
 </div>
+@endsection

@@ -3,6 +3,11 @@
 @section('content')
 <div style="margin-top: 80px">
     <h1>友達を探す</h1>
+</div>
+<div>
+    <a href="{{route('follows.index')}}">戻る</a>
+</div>
+<div>
     <ul>
         @foreach ($users as $user)
         <form action="{{route('follows.follow')}}" method="POST">
@@ -15,8 +20,5 @@
         </form>
         @endforeach
     </ul>
-</div>
-<div>
-    <a href="{{route('follows.index')}}">戻る</a>
 </div>
 
