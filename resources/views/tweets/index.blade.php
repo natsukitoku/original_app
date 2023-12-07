@@ -6,6 +6,9 @@
     <h1>つぶやきページ</h1>
 </div>
 <div>
+    <a href="{{route('home')}}">戻る</a>
+</div>
+<div>
     <a href="{{route('tweets.create')}}">つぶやく</a>
     <a href="{{route('follows.search_friends')}}">新しい友達を探す</a>
 </div>

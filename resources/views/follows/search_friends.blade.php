@@ -15,7 +15,7 @@
             <li>
                 <span>{{$user->name}}</span>
                 <input type="hidden" name="followee_id" value="{{$user->id}}">
-                <button type="submit">フォローする</button>
+                <button type="submit">follow</button>
             </li>
         </form>
         @endforeach

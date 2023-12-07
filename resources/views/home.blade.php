@@ -36,8 +36,11 @@ body { margin: 0; padding: 0; }
         @foreach ($countries as $country)
         <tr>
             <td>{{$country->name}}</td>
-            {{-- <td>{{$visa_information->applyterm}}</td>
-            <td>{{$visa_information->people}}</td> --}}
+            <td>{{$country->visa_information->applyterm}}</td>
+            <td>{{$country->visa_information->people}}</td>
+            <td>
+                <button>＋気になる国</button>
+            </td>
         </tr>
         @endforeach
 

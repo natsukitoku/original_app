@@ -6,6 +6,9 @@
             <h1>留学先</h1>
         </div>
         <div>
+            <a href="{{route('mypage')}}">戻る</a>
+        </div>
+        <div>
             <a href="{{ route('mypage.create.plans') }}">新規登録する</a>
         </div>
         @foreach ($abroadingplans as $abroadingplan)

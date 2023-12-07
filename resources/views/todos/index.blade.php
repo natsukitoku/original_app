@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="margin-top: 80px">
+<div style="margin-top: 24px">
     <h1>ToDo一覧</h1>
+</div>
+<div>
+    <a href="{{route('home')}}">戻る</a>
 </div>
 <div>
     <a href="{{route('todos.create')}}">+新規作成</a>

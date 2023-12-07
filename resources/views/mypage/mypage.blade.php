@@ -3,6 +3,9 @@
 @section('content')
 
  <h1>マイページ</h1>
+<div>
+    <a href="{{route('home')}}">戻る</a>
+</div>
 
 <div>
     <ul>
