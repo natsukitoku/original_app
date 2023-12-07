@@ -16,8 +16,8 @@
     @foreach ($tweets as $tweet)
     <div style="border: solid 1px; margin: 16px">
         <p>{{$tweet->user->name}}</p>
-        <a href="{{route('tweets.edit', 'tweet')}}">編集</a>
-        <a href="{{route('tweets.destroy', 'tweet')}}">削除</a>
+        <a href="{{route('tweets.edit', $tweet)}}">編集</a>
+        <a href="{{route('tweets.destroy', $tweet)}}">削除</a>
         <p>{{$tweet->content}}</p>
     </div>
     <a href="#">コメントする</a>
