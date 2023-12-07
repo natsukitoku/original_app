@@ -8,7 +8,6 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 class Country extends Model
 {
-    use HasFactory;
     use HasFactory, Favoriteable;
 
     public function visa_information()

@@ -4,6 +4,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::controller(MyPageController::class)->group(function () {
     Route::post('/mypage/plans', 'store_abroading_plans')->name('mypage.plans');
     Route::get('mypage/plans/edit', 'edit_abroading_plans')->name('mypage.edit.plans');
 });
+
+Route::get('countries/{country}/favorite', [CountryController::class, 'favorite'])->name('countries.favorites');
 
 Route::controller(TweetController::class)->group(function () {
     Route::get('/tweets', 'index')->name('tweets.index');

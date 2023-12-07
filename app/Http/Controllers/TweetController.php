@@ -70,9 +70,9 @@ class TweetController extends Controller
      * @param  \App\Models\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($tweet)
     {
-        return view('tweets.edit');
+        return view('tweets.edit', compact('tweet'));
     }
 
     /**

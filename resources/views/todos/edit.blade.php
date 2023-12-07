@@ -5,7 +5,7 @@
     <h1>Todoリストの編集</h1>
 </div>
 <div>
-    <a href="{{route('todos.index')}}">戻る</a>
+    <a href="{{route('todos.index')}}">&lt;戻る</a>
 </div>
 <div>
     <form action="PUT">
@@ -28,10 +28,10 @@
         </div>
         <div>
             <label for="date">期限</label>
-            <input type="date" id="date" name="duedate" value="">
+            <input type="date" id="date" name="duedate" value="{{$todo->duedate}}">
         </div>
         <div style="margin: 32px">
-            <textarea name="content" id="content" cols="30" rows="10" placeholder="タスク内容"></textarea>
+            <textarea name="content" id="content" cols="30" rows="10" placeholder="タスク内容">{{$todo->content}}</textarea>
         </div>
         <div style="display: flex">
             <div style="margin-left: 16px">

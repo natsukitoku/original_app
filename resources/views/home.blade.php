@@ -34,15 +34,38 @@ body { margin: 0; padding: 0; }
             <th>年間発給数</th>
         </tr>
         @foreach ($countries as $country)
-        <tr>
-            <td>{{$country->name}}</td>
-            <td>{{$country->visa_information->applyterm}}</td>
-            <td>{{$country->visa_information->people}}</td>
-            <td>
-                <button>＋気になる国</button>
-            </td>
-        </tr>
+            <tr>
+                <td>{{$country->name}}</td>
+                <td>{{$country->visa_information->applyterm}}</td>
+                <td>{{$country->visa_information->people}}</td>
+                <td>
+                    @if ($country->isFavoritedBy(Auth::user()))
+                    <a href="{{ route('countries.favorites', $country) }}">
+                        <i class="fa fa-heart"></i>
+                        お気に入り解除
+                    </a>
+                    @else
+                    <a href="{{ route('countries.favorites', $country) }}">
+                        <i class="fa fa-heart"></i>
+                        お気に入り
+                    </a>
+                    @endif
+                </td>
+            </tr>
         @endforeach
+
+        {{-- <ul>
+            @foreach ($users as $user)
+            <form action="{{route('follows.follow')}}" method="POST">
+                @csrf
+                <li>
+                    <span>{{$user->name}}</span>
+                    <input type="hidden" name="followee_id" value="{{$user->id}}">
+                    <button type="submit">follow</button>
+                </li>
+            </form>
+            @endforeach
+        </ul> --}}
 
 
     </table>
