@@ -70,7 +70,7 @@ class TweetController extends Controller
      * @param  \App\Models\Tweet  $tweet
      * @return \Illuminate\Http\Response
      */
-    public function edit($tweet)
+    public function edit(Tweet $tweet)
     {
         return view('tweets.edit', compact('tweet'));
     }
@@ -91,7 +91,7 @@ class TweetController extends Controller
         $tweet->content = $request->input('content');
         $tweet->save();
 
-        return redirect()->route('tweets.show', $tweet)->with('flash_message', '投稿を編集しました。');
+        return redirect()->route('tweets.index', $tweet)->with('flash_message', '投稿を編集しました。');
     }
 
     /**

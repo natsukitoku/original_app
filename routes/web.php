@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\TodoController;
@@ -58,7 +59,7 @@ Route::controller(TodoController::class)->group(function () {
     Route::get('/todos/create', 'create')->name('todos.create');
     Route::post('/todos', 'store')->name('todos.store');
     Route::get('/todos/{todo}/edit', 'edit')->name('todos.edit');
-    Route::patch('/todos/{todo}', 'update')->name('todos.update');
+    Route::put('/todos/{todo}', 'update')->name('todos.update');
     Route::delete('/todos/{todo}', 'destroy')->name('todos.destroy');
 });
 
@@ -66,4 +67,9 @@ Route::controller(FollowController::class)->group(function () {
     Route::get('/follows', 'index')->name('follows.index');
     Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
     Route::post('/follows/follow', 'register_friends')->name('follows.follow');
+});
+
+Route::controller(CommentController::class)->group(function () {
+    Route::get('/comments/{tweet_id}/create', 'create')->name('comments.create');
+    Route::post('/comments/{tweet_id}', 'store')->name('comments.store');
 });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="margin-top: 80px; margin-bottom: 24px">
+    <div style="margin-top: 24px; margin-bottom: 24px">
         <h1>Todoリストの作成</h1>
     </div>
     <div>

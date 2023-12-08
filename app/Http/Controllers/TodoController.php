@@ -85,13 +85,18 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         $request->validate([
+            'priority_num' => 'required',
+            'duedate' => 'required',
             'content' => 'required',
         ]);
 
-        $todo->content = $request->input('content');
         $todo->user_id = Auth::id();
+        $todo->priority_num = $request->input('priority_num');
+        $todo->content = $request->input('content');
         $todo->done = $request->boolean('done', $todo->done);
         $todo->save();
+
+        return to_route('todos.index', 'todo');
     }
 
     /**
