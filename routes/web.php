@@ -40,7 +40,8 @@ Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage/plans', 'index_abroading_plans')->name('mypage.index.plans');
     Route::get('/mypage/plans/create', 'create_abroading_plans')->name('mypage.create.plans');
     Route::post('/mypage/plans', 'store_abroading_plans')->name('mypage.plans');
-    Route::get('mypage/plans/edit', 'edit_abroading_plans')->name('mypage.edit.plans');
+    Route::delete('/myapge/{abroadingplan}', 'destroy_abroading_plans')->name('mypage.abroadingplan.destroy');
+    Route::get('mypage/{abroadingplan}/edit', 'edit_abroading_plans')->name('mypage.edit.plans');
 });
 
 Route::get('countries/{country}/favorite', [CountryController::class, 'favorite'])->name('countries.favorites');
@@ -73,4 +74,5 @@ Route::controller(FollowController::class)->group(function () {
 Route::controller(CommentController::class)->group(function () {
     Route::get('/comments/{tweet}/create', 'create')->name('comments.create');
     Route::post('/comments/{tweet}', 'store')->name('comments.store');
+    Route::delete('/comments/{comment}', 'destroy')->name('comments.destroy');
 });

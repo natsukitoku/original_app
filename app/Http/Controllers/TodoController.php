@@ -20,8 +20,12 @@ class TodoController extends Controller
         if ($sort) {
             if ($sort === '1') {
                 $todos = Todo::orderBy('priority_num', 'DESC')->get();
-            } elseif($sort === '2') {
+            } elseif ($sort === '2') {
                 $todos = Todo::orderBy('duedate', 'ASC')->get();
+            } elseif ($sort === '3') {
+                $todos = Todo::where('done', '=', '0')->get();
+            } elseif ($sort === '4') {
+                $todos = Todo::where('done', '=', '1')->get();
             }
         } else {
             $todos = Todo::latest()->get();
@@ -52,8 +56,9 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, AbroadingPlan $abroading_plan)
+    public function store(Request $request, Todo $todo)
     {
+
         $request->validate([
             'priority_num' => 'required',
             'duedate' => 'required',
@@ -96,6 +101,11 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
+        if ($request->done == 1) {
+            $todo->done = $request->input('done');
+            $todo->save();
+        }
+
         $request->validate([
             'priority_num' => 'required',
             'duedate' => 'required',

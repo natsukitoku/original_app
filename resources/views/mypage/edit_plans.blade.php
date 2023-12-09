@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <div style="margin: 80px">
         <h1>留学予定編集</h1>
+    <div>
+        <a href="{{ route('mypage.index.plans') }}">&lt;戻る</a>
     </div>
 
     <form method="POST" action="{{ route('mypage.plans') }}">
@@ -12,7 +13,11 @@
             <label for="countries">国名選択</label>
             <select name="country_id" id="countries">
                 @foreach ($countries as $country)
-                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @if ($abroadingplan->city->country_id == $country->id)
+                        <option value="{{ $country->id }}" selected>{{ $country->name }}</option>
+                    @else
+                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
@@ -27,12 +32,13 @@
         <div style="margin: 24px">
             <div style="margin-bottom: 8px">
                 <label for="fromdate">いつから?</label>
-                <input type="date" id="date" name="from_date" value="">
+                <input type="date" id="date" name="from_date" value="{{ $abroadingplan->from_date }}">
             </div>
             <div>
                 <label for="enddate">いつまで?</label>
-                <input type="date" id="date" name="end_date" value="">
+                <input type="date" id="date" name="end_date" value="{{ $abroadingplan->end_date }}">
             </div>
         </div>
         <button type="submit">登録する</button>
     </form>
+@endsection

@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
+
     <h1>パスワード変更</h1>
+    <div>
+        <a href="{{route('mypage.edit')}}">&lt;戻る</a>
+    </div>
     <form method="POST" action="{{ route('mypage.update_password') }}">
         @csrf
         @method('PUT')
@@ -34,6 +37,5 @@
             </button>
         </div>
     </form>
-</div>
 @endsection
 

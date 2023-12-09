@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\AbroadingPlan;
 use App\Models\Todo;
 use App\Models\Tweet;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,17 @@ class MyPageController extends Controller
 
         $abroadingplans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
-        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingplans'));
+        $abroadingPlan_date = AbroadingPlan::where('user_id', '=', Auth::id())->orderBY('from_date', 'ASC')->first();
+
+        $from_date = $abroadingPlan_date->from_date;
+
+        $date = new DateTime($from_date);
+
+        $now = new DateTime('now');
+
+        $diff = date_diff($now, $date);
+
+        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingplans', 'diff'));
     }
 
     // 設定画面
@@ -135,12 +146,12 @@ class MyPageController extends Controller
         return view('mypage.create_plans', compact('countries'));
     }
 
-    public function edit_abroading_plans(Country $countries)
+    public function edit_abroading_plans(Country $countries, AbroadingPlan $abroadingplan)
     {
         $countries = Country::all();
         $cities = City::all();
 
-        return view('mypage.edit_plans', compact('countries', 'cities'));
+        return view('mypage.edit_plans', compact('countries', 'cities', 'abroadingplan'));
     }
 
     public function store_abroading_plans(Request $request)
@@ -158,6 +169,15 @@ class MyPageController extends Controller
         $abroadingplan->end_date = $request->input('end_date');
         $abroadingplan->save();
 
+
+        return to_route('mypage.index.plans');
+    }
+
+    public function destroy_abroading_plans(AbroadingPlan $abroadingplan)
+    {
+        $abroadingplan->delete();
+
         return to_route('mypage.index.plans');
     }
 }
+

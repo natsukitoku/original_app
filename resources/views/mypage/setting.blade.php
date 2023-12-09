@@ -4,7 +4,7 @@
 
  <h1>マイページ</h1>
 <div>
-    <a href="{{route('mypage')}}">戻る</a>
+    <a href="{{route('mypage')}}">&lt;戻る</a>
 </div>
 
 <div>

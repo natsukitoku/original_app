@@ -30,4 +30,11 @@ class CommentController extends Controller
 
         return to_route('tweets.index');
     }
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+
+        return to_route('tweets.index');
+    }
 }
