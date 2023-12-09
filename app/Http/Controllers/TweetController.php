@@ -104,6 +104,6 @@ class TweetController extends Controller
     {
         $tweet->delete();
 
-        return redirect()->route('tweets.index')->with('flash_message', '投稿を削除しました。');
+        return redirect()->route('tweets.index');
     }
 }

@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\AbroadingPlan;
+use App\Models\Todo;
+use App\Models\Tweet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -18,7 +20,23 @@ class MyPageController extends Controller
     {
         $user = Auth::user();
 
-        return view('mypage.mypage', compact('user'));
+        $todos = Todo::where('user_id', '=', Auth::id())->where('is_public', '=', '0')->get();
+
+        $tweets = Tweet::where('user_id', '=', Auth::id())->get();
+
+        $favorites = $user->favorites(Country::class)->get();
+
+        $abroadingplans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
+
+        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingplans'));
+    }
+
+    // 設定画面
+    public function setting()
+    {
+        $user = Auth::user();
+
+        return view('mypage.setting', compact('user'));
     }
 
     // パスワード更新ページ

@@ -21,15 +21,6 @@ class FollowController extends Controller
         return view('follows.index', compact('followees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -91,6 +82,8 @@ class FollowController extends Controller
     public function search_friends()
     {
         $users = User::where('id', '!=', Auth::id())->get();
+
+        // todo 友達に追加した人は出てこないようにする
 
         return view('follows.search_friends', compact('users'));
     }

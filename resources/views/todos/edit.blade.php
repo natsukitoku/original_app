@@ -14,6 +14,9 @@
             <div style="margin-top: 32px">
                 <label for="priority_num">優先度選択</label>
                 <select name="priority_num" id="priority_num">
+                    @if ($todo->priority_num)
+                    <option value="{{$todo->priority_num}} selected">{{$todo->priority_num}}</option>
+                    @endif
                     <option hidden>選択して下さい</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -35,14 +38,13 @@
                 <textarea name="content" id="content" cols="30" rows="10" placeholder="タスク内容">{{ $todo->content }}</textarea>
             </div>
             <div style="display: flex">
-                <div style="margin-left: 16px">
-                    <input type="checkbox" name="public" id="public" checked>
-                    <label for="public">公開</label>
-                </div>
-                <div style="margin-left: 32px">
-                    <input type="checkbox" name="private" id="private">
-                    <label for="private">非公開</label>
-                </div>
+                @if ($todo->is_public == 0)
+                <label for="public"><input type="radio" name="is_public" value="0" checked>公開</label>
+                <label for="private"><input type="radio" name="is_public" value="1">非公開</label>
+                @else
+                <label for="public"><input type="radio" name="is_public" value="0">公開</label>
+                <label for="private"><input type="radio" name="is_public" value="1" checked>非公開</label>
+                @endif
             </div>
             <button type="submit">登録</button>
         </form>

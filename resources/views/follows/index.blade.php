@@ -5,7 +5,7 @@
     <h1>友達一覧</h1>
 </div>
 <div>
-    <a href="{{route('home')}}">戻る</a>
+    <a href="{{route('home')}}">&lt;戻る</a>
 </div>
 <div>
     <a href="{{route('follows.search_friends')}}">新しい友達を探す</a>

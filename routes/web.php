@@ -29,6 +29,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage', 'mypage')->name('mypage');
+    Route::get('/mypage/setting', 'setting')->name('mypage.setting');
     Route::get('/mypage/edit', 'edit_account')->name('mypage.edit');
     Route::put('/mypage', 'update_account')->name('mypage.update');
     Route::get('/mypage/password/edit', 'edit_password')->name('mypage.edit_password');
@@ -70,6 +71,6 @@ Route::controller(FollowController::class)->group(function () {
 });
 
 Route::controller(CommentController::class)->group(function () {
-    Route::get('/comments/{tweet_id}/create', 'create')->name('comments.create');
-    Route::post('/comments/{tweet_id}', 'store')->name('comments.store');
+    Route::get('/comments/{tweet}/create', 'create')->name('comments.create');
+    Route::post('/comments/{tweet}', 'store')->name('comments.store');
 });

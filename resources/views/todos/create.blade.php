@@ -55,8 +55,8 @@
                 <textarea name="content" id="content" cols="30" rows="10" placeholder="タスク内容"></textarea>
             </div>
             <div style="display: flex">
-                <label for="public"><input type="radio" name="radio" value="is_public">公開</label>
-                <label for="private"><input type="radio" name="radio" value="private">非公開</label>
+                <label for="public"><input type="radio" name="is_public" value="0">公開</label>
+                <label for="private"><input type="radio" name="is_public" value="1">非公開</label>
             </div>
             <button type="submit">登録</button>
         </form>

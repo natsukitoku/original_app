@@ -23,6 +23,9 @@
                     <p>いつまで？：{{ $abroadingplan->end_date }}</p>
                 </div>
                 <a href="{{ route('mypage.edit.plans', $abroadingplan) }}">編集</a>
+                <form action="#">
+                    <button type="submit">削除</button>
+                </form>
             </div>
         @endforeach
     </div>

@@ -14,12 +14,24 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $todos = Todo::latest()->get();
+        $sort = $request->input('sort');
+        if ($sort) {
+            if ($sort === '1') {
+                $todos = Todo::orderBy('priority_num', 'DESC')->get();
+            } elseif($sort === '2') {
+                $todos = Todo::orderBy('duedate', 'ASC')->get();
+            }
+        } else {
+            $todos = Todo::latest()->get();
+        }
 
         return view('todos.index', compact('todos'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -60,7 +72,7 @@ class TodoController extends Controller
 
 
 
-        return redirect()->route('todos.index')->with('flash_massege','Todoリストの作成が完了しました!');
+        return redirect()->route('todos.index')->with('flash_massege', 'Todoリストの作成が完了しました!');
     }
 
 
@@ -94,6 +106,7 @@ class TodoController extends Controller
         $todo->priority_num = $request->input('priority_num');
         $todo->content = $request->input('content');
         $todo->done = $request->boolean('done', $todo->done);
+        $todo->is_public = $request->boolean('is_public');
         $todo->save();
 
         return to_route('todos.index', 'todo');
