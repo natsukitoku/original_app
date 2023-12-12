@@ -38,7 +38,10 @@
                     @endforeach
                 @endif
             </li>
-            <li style="margin: 16px">タスク完了数</li>
+            <li style="margin: 16px">
+                <span>タスク完了数</span>
+                <p>{{$done_count}}</p>
+            </li>
         </ul>
         <div>
             <h4>公開中のtodo一覧</h4>

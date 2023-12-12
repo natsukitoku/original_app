@@ -43,6 +43,7 @@
             @else
             <div style="border: solid 1px; margin: 32px">
                 <h5>留学先:{{ $todo->abroading_plan->city->name }}</h5>
+                <span style="color:red">完了!</span>
                 <a href="{{ route('todos.edit', $todo) }}">編集</a>
                 <form action="{{ route('todos.destroy', $todo) }}" method="POST">
                     @csrf

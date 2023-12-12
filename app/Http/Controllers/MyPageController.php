@@ -39,7 +39,9 @@ class MyPageController extends Controller
 
         $diff = date_diff($now, $date);
 
-        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingplans', 'diff'));
+        $done_count = Todo::where('user_id', '=', Auth::id())->where('done', '=', '1')->count();
+
+        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingplans', 'diff', 'done_count'));
     }
 
     // 設定画面

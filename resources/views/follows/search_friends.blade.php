@@ -8,19 +8,19 @@
     <div>
         <ul>
             @foreach ($users as $user)
-                <form action="{{ route('follows.follow') }}" method="POST">
-                    @csrf
-                    <li>
-                        <span>{{ $user->name }}</span>
-                        @if (isset($abroading_plans))
-                            @foreach ($user->abroading_plans as $abroading_plan)
-                                <p>{{ $user->abroading_plan->city->name }}</p>
-                            @endforeach
-                        @endif
-                        <input type="hidden" name="followee_id" value="{{ $user->id }}">
-                        <button type="submit">follow</button>
-                    </li>
-                </form>
+            <form action="{{ route('follows.follow') }}" method="POST">
+                @csrf
+                <li>
+                    <span>{{ $user->name }}</span>
+                    @if (isset($abroading_plans))
+                        @foreach ($user->abroading_plans as $abroading_plan)
+                            <p>{{ $user->abroading_plan->city->name }}</p>
+                        @endforeach
+                    @endif
+                    <input type="hidden" name="followee_id" value="{{ $user->id }}">
+                    <button type="submit">follow</button>
+                </li>
+            </form>
             @endforeach
         </ul>
     </div>

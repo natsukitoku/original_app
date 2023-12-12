@@ -83,9 +83,11 @@ class FollowController extends Controller
     {
         $users = User::where('id', '!=', Auth::id())->get();
 
+        $followees = Follow::where('follower_id', '=', Auth::id())->get();
+
         // todo 友達に追加した人は出てこないようにする
 
-        return view('follows.search_friends', compact('users'));
+        return view('follows.search_friends', compact('users','followees'));
     }
 
     public function register_friends(Request $request)
