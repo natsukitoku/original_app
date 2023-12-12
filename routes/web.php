@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Auth::routes();
+Route::resource('mypages', MyPageController::class)->middleware(['auth', 'verified']);
+Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
