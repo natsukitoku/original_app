@@ -8,12 +8,12 @@
     <div>
         <a href="{{ route('todos.create') }}">+新規作成</a>
     </div>
-    <form action="{{ route('todos.index') }}">
-        <button type="submit" name="sort" value="1">優先度順</button>
-        <button type="submit" name="sort" value="2">期限順</button>
-        <button type="submit" name="sort" value="3">未完了</button>
-        <button type="submit" name="sort" value="4">完了</button>
-    </form>
+    <div>
+        <a href="{{route('todos.index', array_merge(request()->query(), ['priority' => 1])) }}">優先度</a>
+        <a href="{{route('todos.index', array_merge(request()->query(), ['due' => 1])) }}">期限順</a>
+        <a href="{{route('todos.index', array_merge(request()->query(), ['status' => 'todo'])) }}">未完了</a>
+        <a href="{{route('todos.index', array_merge(request()->query(), ['status' => 'done'])) }}">完了</a>
+    </div>
     <div>
         @foreach ($todos as $todo)
             @if ($todo->done != 1)

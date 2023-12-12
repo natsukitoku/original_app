@@ -16,20 +16,31 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        $sort = $request->input('sort');
-        if ($sort) {
-            if ($sort === '1') {
-                $todos = Todo::orderBy('priority_num', 'DESC')->get();
-            } elseif ($sort === '2') {
-                $todos = Todo::orderBy('duedate', 'ASC')->get();
-            } elseif ($sort === '3') {
-                $todos = Todo::where('done', '=', '0')->get();
-            } elseif ($sort === '4') {
-                $todos = Todo::where('done', '=', '1')->get();
-            }
-        } else {
-            $todos = Todo::latest()->get();
+        // まずは受け取ったパラメータの値を変数に格納する
+        $priority = $request->input('priority');
+        $due = $request->input('due');
+        $status = $request->input('status');
+
+        // クエリを組み立てるためのビルダーの準備
+        $query = Todo::query();
+
+        // それぞれパラメータに指定があれば検索条件を付け加えていく
+        if($priority == 1) {
+            $query->orderBy('priority_num', 'DESC');
         }
+
+        if($due == 1) {
+            $query->orderBy('duedate', 'ASC');
+        }
+
+        if($status == "todo") {
+            $query->where('done', '=', '0');
+        } elseif($status == "done") {
+            $query->where('done', '=', '1');
+        }
+
+        // get()を実行することで実際にDBへの問い合わせが実行される
+        $todos = $query->get();
 
         return view('todos.index', compact('todos'));
     }

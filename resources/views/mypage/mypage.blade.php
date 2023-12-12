@@ -48,6 +48,7 @@
             @foreach ($todos as $todo)
                 <div style="border: 1px solid">
                     <div style="margin-top: 32px; display: flex">
+                        <h5>留学先:{{ $todo->abroading_plan->city->name }}</h5>
                         <p style="margin-right: 8px">優先度:{{ $todo->priority_num }}</p>
                         <p>期限:{{ $todo->duedate }}</p>
                     </div>
