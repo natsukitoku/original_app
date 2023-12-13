@@ -44,14 +44,15 @@
                         $now = new DateTime('now');
 
                         $diff = date_diff($now, $date);
+
                     @endphp
                     @if ($diff->y !== 0)
                         まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
                     @elseif ($diff->m !== 0)
                         まで残り{{ $diff->m }}月{{ $diff->d }}日!
-                    @elseif($diff->d !== 0)
+                    @elseif($diff->invert == 0)
                         まで残り{{ $diff->d }}日!
-                    @elseif($diff->d < 0)
+                    @elseif($diff->invert == 1)
                         {{ $diff->d }}日!
                     @endif
                 @endif
