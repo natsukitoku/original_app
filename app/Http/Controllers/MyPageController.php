@@ -27,21 +27,13 @@ class MyPageController extends Controller
 
         $favorites = $user->favorites(Country::class)->get();
 
-        $abroadingplans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
-
-        $abroadingPlan_date = AbroadingPlan::where('user_id', '=', Auth::id())->orderBY('from_date', 'ASC')->first();
-
-        $from_date = $abroadingPlan_date->from_date;
-
-        $date = new DateTime($from_date);
-
-        $now = new DateTime('now');
-
-        $diff = date_diff($now, $date);
+        $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
         $done_count = Todo::where('user_id', '=', Auth::id())->where('done', '=', '1')->count();
 
-        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingplans', 'diff', 'done_count'));
+
+
+        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingPlans', 'done_count'));
     }
 
     // 設定画面

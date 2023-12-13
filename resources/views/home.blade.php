@@ -35,15 +35,27 @@
         <div class="container" style="margin: 20px">
             <h1>Hello! {{ $user->name }}さん!</h1>
             <h2>留学
-                @if ($diff->y !== 0)
-                まで残り{{$diff->y}}年{{$diff->m}}月{{$diff->d}}日!</h2>
-                @elseif ($diff->m !== 0)
-                まで残り{{$diff->m}}月{{$diff->d}}日!</h2>
-                @elseif($diff->d !== 0)
-                まで残り{{$diff->d}}日!</h2>
-                @elseif($diff->d < 0)
-                {{$diff->d}}日!</h2>
+                @if ($abroadingPlan)
+                    @php
+                        $from_date = $abroadingPlan->from_date;
+
+                        $date = new DateTime($from_date);
+
+                        $now = new DateTime('now');
+
+                        $diff = date_diff($now, $date);
+                    @endphp
+                    @if ($diff->y !== 0)
+                        まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
+                    @elseif ($diff->m !== 0)
+                        まで残り{{ $diff->m }}月{{ $diff->d }}日!
+                    @elseif($diff->d !== 0)
+                        まで残り{{ $diff->d }}日!
+                    @elseif($diff->d < 0)
+                        {{ $diff->d }}日!
+                    @endif
                 @endif
+            </h2>
         </div>
         <div id="map" style="height: 420px; margin-top: 192px"></div>
         <div style="margin-top: 480px">

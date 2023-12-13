@@ -34,16 +34,10 @@ class HomeController extends Controller
 
         $countries = Country::all();
 
+
         $abroadingPlan = AbroadingPlan::where('user_id', '=', Auth::id())->orderBY('from_date', 'ASC')->first();
 
-        $from_date = $abroadingPlan->from_date;
 
-        $date = new DateTime($from_date);
-
-        $now = new DateTime('now');
-
-        $diff = date_diff($now, $date);
-
-        return view('home', compact('countries', 'user','diff'));
+        return view('home', compact('countries', 'user', 'abroadingPlan'));
     }
 }

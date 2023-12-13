@@ -15,21 +15,35 @@
         <ul style="display: flex">
             <li style="margin: 16px">
                 <span>留学
-                @if ($diff->y !== 0)
-                    まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!</span>
-                @elseif ($diff->m !== 0)
-                    まで残り{{ $diff->m }}月{{ $diff->d }}日!</span>
-                @elseif($diff->d !== 0)
-                    まで残り{{ $diff->d }}日!</h2>
-                @elseif($diff->d < 0)
-                    {{ $diff->d }}日!</span>
-                @endif
+                    @if (count($abroadingPlans))
+                        @php
+                            $latestAbroadingPlan = $abroadingPlans->sortBy('from_date')->first();
+
+                            $fromDate = $latestAbroadingPlan->from_date;
+
+                            $date = new DateTime($fromDate);
+
+                            $now = new DateTime('now');
+
+                            $diff = date_diff($now, $date);
+                        @endphp
+                        @if ($diff->y !== 0)
+                            まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
+                        @elseif ($diff->m !== 0)
+                            まで残り{{ $diff->m }}月{{ $diff->d }}日!
+                        @elseif($diff->d !== 0)
+                            まで残り{{ $diff->d }}日!
+                        @elseif($diff->d < 0)
+                            {{ $diff->d }}日!
+                        @endif
+                    @endif
+                </span>
             </li>
             <li style="margin: 16px">
                 @if (isset($abroadingplans))
                     <span>留学予定</span></br>
                     @foreach ($abroadingplans as $abroadingplan)
-                        {{ $abroadingplan->city->country->name }}</br>
+                        {{ $abroadingplan->city->name }}</br>
                     @endforeach
                 @else
                     <span>気になる国</span></br>
@@ -40,7 +54,7 @@
             </li>
             <li style="margin: 16px">
                 <span>タスク完了数</span>
-                <p>{{$done_count}}</p>
+                <p>{{ $done_count }}</p>
             </li>
         </ul>
         <div>
