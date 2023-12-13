@@ -34,8 +34,8 @@
         </style>
         <div class="container" style="margin: 20px">
             <h1>Hello! {{ $user->name }}さん!</h1>
-            <h2>留学
-                @if ($abroadingPlan)
+            @if ($abroadingPlan)
+                <h2>留学
                     @php
                         $from_date = $abroadingPlan->from_date;
 
@@ -55,8 +55,8 @@
                     @elseif($diff->invert == 1)
                         {{ $diff->d }}日!
                     @endif
-                @endif
-            </h2>
+                </h2>
+            @endif
         </div>
         <div id="map" style="height: 420px; margin-top: 192px"></div>
         <div style="margin-top: 480px">

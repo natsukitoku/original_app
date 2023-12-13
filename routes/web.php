@@ -6,6 +6,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Route::resource('mypages', MyPageController::class)->middleware(['auth', 'verified']);
+Route::resource('home', HomeController::class)->middleware(['auth', 'verified']);
 Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -30,6 +30,7 @@ class MyPageController extends Controller
 
         $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
+    
         $done_count = Todo::where('user_id', '=', Auth::id())->where('done', '=', '1')->count();
 
 

@@ -36,20 +36,24 @@
                         @elseif($diff->invert == 1)
                             {{ $diff->d }}日!
                         @endif
+                    @else
+                        </br>未定
                     @endif
                 </span>
             </li>
             <li style="margin: 16px">
-                @if ($abroadingPlans)
+                @if (count($abroadingPlans))
                     <span>留学予定</span></br>
                     @foreach ($abroadingPlans as $abroadingPlan)
                         {{ $abroadingPlan->city->name }}</br>
                     @endforeach
-                @else
+                @elseif (count($favorites))
                     <span>気になる国</span></br>
                     @foreach ($favorites as $fav)
                         {{ App\Models\Country::find($fav->favoriteable_id)->name }}
                     @endforeach
+                @else
+                    <span>留学</br>予定なし</span>
                 @endif
             </li>
             <li style="margin: 16px">
@@ -59,28 +63,36 @@
         </ul>
         <div>
             <h4>公開中のtodo一覧</h4>
-            @foreach ($todos as $todo)
-                <div style="border: 1px solid">
-                    <div style="margin-top: 32px; display: flex">
-                        <h5>留学先:{{ $todo->abroading_plan->city->name }}</h5>
-                        <p style="margin-right: 8px">優先度:{{ $todo->priority_num }}</p>
-                        <p>期限:{{ $todo->duedate }}</p>
+            @if (count($todos))
+                @foreach ($todos as $todo)
+                    <div style="border: 1px solid">
+                        <div style="margin-top: 32px; display: flex">
+                            <h5>留学先:{{ $todo->abroading_plan->city->name }}</h5>
+                            <p style="margin-right: 8px">優先度:{{ $todo->priority_num }}</p>
+                            <p>期限:{{ $todo->duedate }}</p>
+                        </div>
+                        <div style="margin: 32px">
+                            <h4>{{ $todo->content }}</h4>
+                        </div>
                     </div>
-                    <div style="margin: 32px">
-                        <h4>{{ $todo->content }}</h4>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            @else
+                <h6>現在公開中のTodoはありません。</h6>
+            @endif
         </div>
         <div style="margin-top: 16px">
             <h4>つぶやき一覧</h4>
-            @foreach ($tweets as $tweet)
-                <div style="border: solid 1px; margin: 16px">
-                    <p>{{ $tweet->user->name }}</p>
-                    <p>{{ $tweet->content }}</p>
-                </div>
-                <a href="{{ route('comments.create', $tweet) }}">コメントする</a>
-            @endforeach
+            @if (count($tweets))
+                @foreach ($tweets as $tweet)
+                    <div style="border: solid 1px; margin: 16px">
+                        <p>{{ $tweet->user->name }}</p>
+                        <p>{{ $tweet->content }}</p>
+                    </div>
+                    <a href="{{ route('comments.create', $tweet) }}">コメントする</a>
+                @endforeach
+            @else
+            <h6>つぶやきはありません。</h6>
+            @endif
         </div>
 
     </div>

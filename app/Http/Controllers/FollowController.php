@@ -32,6 +32,7 @@ class FollowController extends Controller
         $followeeIds = $followees->pluck('id')->toArray();
 
         // 検索対象外としたい無視するIDのリストを生成
+        // フォロー済みのユーザーIDの配列と自分のIDをarray_merge使ってマージする
         $ignoreIds = array_merge($followeeIds, [Auth::id()]);
 
         // whereNotInを使うことで、第二引数に指定されたidの配列を含まないユーザーのみを抽出する
