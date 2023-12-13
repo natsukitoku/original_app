@@ -24,12 +24,18 @@ class FollowController extends Controller
 
     public function search_friends()
     {
-        $users = User::where('id', '!=', Auth::id())->get();
+        // フォローしているユーザーの情報を取得
+        $followees = Auth::user()->followees;
 
-        // $followees = Auth::user()->followees;
+        // ユーザーのCollection(配列の拡張)から、pluckメソッドを使って、idだけを抜き出す
+        // CollectionをtoArrayで純粋な配列に変換
+        $followeeIds = $followees->pluck('id')->toArray();
 
-        // todo 友達に追加した人は出てこないようにする
+        // 検索対象外としたい無視するIDのリストを生成
+        $ignoreIds = array_merge($followeeIds, [Auth::id()]);
 
+        // whereNotInを使うことで、第二引数に指定されたidの配列を含まないユーザーのみを抽出する
+        $users = User::whereNotIn('id', $ignoreIds)->get();
 
         return view('follows.search_friends', compact('users'));
     }
