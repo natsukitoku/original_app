@@ -14,70 +14,11 @@ class FollowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Follow $followee)
+    public function index()
     {
-        $followees = Follow::where('follower_id', '=', Auth::id())->get();
-        // $user = User::find(Auth::id());
-        // $followees = $user->followees();
+        $followees = Auth::user()->followees;
 
         return view('follows.index', compact('followees'));
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Follow  $follow
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Follow $follow)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Follow  $follow
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Follow $follow)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Follow  $follow
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Follow $follow)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Follow  $follow
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Follow $follow)
-    {
-        //
     }
 
 
@@ -85,11 +26,12 @@ class FollowController extends Controller
     {
         $users = User::where('id', '!=', Auth::id())->get();
 
-        $followees = Follow::where('follower_id', '=', Auth::id())->get();
+        // $followees = Auth::user()->followees;
 
         // todo 友達に追加した人は出てこないようにする
 
-        return view('follows.search_friends', compact('users', 'followees'));
+
+        return view('follows.search_friends', compact('users'));
     }
 
     public function register_friends(Request $request)

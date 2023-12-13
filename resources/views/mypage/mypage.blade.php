@@ -31,19 +31,19 @@
                             まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
                         @elseif ($diff->m !== 0)
                             まで残り{{ $diff->m }}月{{ $diff->d }}日!
-                        @elseif($diff->d !== 0)
+                        @elseif($diff->invert == 0)
                             まで残り{{ $diff->d }}日!
-                        @elseif($diff->d < 0)
+                        @elseif($diff->invert == 1)
                             {{ $diff->d }}日!
                         @endif
                     @endif
                 </span>
             </li>
             <li style="margin: 16px">
-                @if (isset($abroadingplans))
+                @if ($abroadingPlans)
                     <span>留学予定</span></br>
-                    @foreach ($abroadingplans as $abroadingplan)
-                        {{ $abroadingplan->city->name }}</br>
+                    @foreach ($abroadingPlans as $abroadingPlan)
+                        {{ $abroadingPlan->city->name }}</br>
                     @endforeach
                 @else
                     <span>気になる国</span></br>

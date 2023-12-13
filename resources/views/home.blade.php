@@ -61,11 +61,12 @@
         <div id="map" style="height: 420px; margin-top: 192px"></div>
         <div style="margin-top: 480px">
             <h2>ワーホリ協定国一覧</h2>
-            <table style="margin: 24px">
-                <tr>
+            <table class="table table-sm" style="margin: 24px">
+                <tr style="font-size: 16px">
                     <th>国名</th>
                     <th>応募可能時期</th>
                     <th>年間発給数</th>
+                    <th>お気に入り</th>
                 </tr>
                 @foreach ($countries as $country)
                     <tr>
@@ -74,12 +75,12 @@
                         <td>{{ $country->visa_information->people }}</td>
                         <td>
                             @if ($country->isFavoritedBy(Auth::user()))
-                                <a href="{{ route('countries.favorites', $country) }}">
+                                <a href="{{ route('countries.favorites', $country) }}" style="text-decoration:none">
                                     <i class="fa fa-heart"></i>
                                     お気に入り解除
                                 </a>
                             @else
-                                <a href="{{ route('countries.favorites', $country) }}">
+                                <a href="{{ route('countries.favorites', $country) }}" style="text-decoration:none">
                                     <i class="fa fa-heart"></i>
                                     お気に入り
                                 </a>
@@ -87,21 +88,6 @@
                         </td>
                     </tr>
                 @endforeach
-
-                {{-- <ul>
-            @foreach ($users as $user)
-            <form action="{{route('follows.follow')}}" method="POST">
-                @csrf
-                <li>
-                    <span>{{$user->name}}</span>
-                    <input type="hidden" name="followee_id" value="{{$user->id}}">
-                    <button type="submit">follow</button>
-                </li>
-            </form>
-            @endforeach
-        </ul> --}}
-
-
             </table>
         </div>
         <script>

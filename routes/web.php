@@ -29,7 +29,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(MyPageController::class)->group(function () {
-    Route::get('/mypage', 'mypage')->name('mypage');
+    Route::get('/mypage', 'mypage')->name('mypage')->middleware('auth');
     Route::get('/mypage/setting', 'setting')->name('mypage.setting');
     Route::get('/mypage/edit', 'edit_account')->name('mypage.edit');
     Route::put('/mypage', 'update_account')->name('mypage.update');
@@ -58,7 +58,7 @@ Route::controller(TweetController::class)->group(function () {
 });
 
 Route::controller(TodoController::class)->group(function () {
-    Route::get('/todos', 'index')->name('todos.index');
+    Route::get('/todos', 'index')->name('todos.index')->middleware('auth');
     Route::get('/todos/create', 'create')->name('todos.create');
     Route::post('/todos', 'store')->name('todos.store');
     Route::get('/todos/{todo}/edit', 'edit')->name('todos.edit');
@@ -67,13 +67,13 @@ Route::controller(TodoController::class)->group(function () {
 });
 
 Route::controller(FollowController::class)->group(function () {
-    Route::get('/follows', 'index')->name('follows.index');
+    Route::get('/follows', 'index')->name('follows.index')->middleware('auth');
     Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
     Route::post('/follows/follow', 'register_friends')->name('follows.follow');
 });
 
 Route::controller(CommentController::class)->group(function () {
-    Route::get('/comments/{tweet}/create', 'create')->name('comments.create');
+    Route::get('/comments/{tweet}/create', 'create')->name('comments.create')->middleware('auth');
     Route::post('/comments/{tweet}', 'store')->name('comments.store');
     Route::delete('/comments/{comment}', 'destroy')->name('comments.destroy');
 });

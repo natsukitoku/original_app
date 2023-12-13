@@ -21,6 +21,7 @@ class MyPageController extends Controller
     {
         $user = Auth::user();
 
+
         $todos = Todo::where('user_id', '=', Auth::id())->where('is_public', '=', '0')->get();
 
         $tweets = Tweet::where('user_id', '=', Auth::id())->get();
