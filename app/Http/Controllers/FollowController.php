@@ -17,6 +17,8 @@ class FollowController extends Controller
     public function index(Follow $followee)
     {
         $followees = Follow::where('follower_id', '=', Auth::id())->get();
+        // $user = User::find(Auth::id());
+        // $followees = $user->followees();
 
         return view('follows.index', compact('followees'));
     }
@@ -87,7 +89,7 @@ class FollowController extends Controller
 
         // todo 友達に追加した人は出てこないようにする
 
-        return view('follows.search_friends', compact('users','followees'));
+        return view('follows.search_friends', compact('users', 'followees'));
     }
 
     public function register_friends(Request $request)

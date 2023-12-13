@@ -11,7 +11,7 @@
     <div>
         <ul>
             @foreach ($followees as $followee)
-                <li>{{ $followee->followee_id }}</li>
+                <li>{{ $followee->name }}</li>
                 <button>unfollow</button>
             @endforeach
         </ul>

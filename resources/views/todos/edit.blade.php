@@ -11,20 +11,12 @@
         <div style="margin-top: 32px">
             <label for="priority_num">優先度選択</label>
             <select name="priority_num" id="priority_num">
-                @if ($todo->priority_num)
-                    <option value="{{ $todo->priority_num }} selected">{{ $todo->priority_num }}</option>
-                @endif
+
                 <option hidden>選択して下さい</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                @foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as $number)
+                    <option value="{{ $number }}" @if ($number == $todo->priority_num) selected @endif>
+                        {{ $number }}</option>
+                @endforeach
             </select>
         </div>
         <div>
