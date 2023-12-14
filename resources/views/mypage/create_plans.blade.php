@@ -8,7 +8,7 @@
     <form method="POST" action="{{ route('mypage.plans') }}">
         @csrf
         <div style="margin: 24px">
-            <label for="countries">国名選択</label>
+            <label for="countries">行き先選択</label>
             <select id="cities" name='city_id'>
                 @foreach ($countries as $country)
                     <optgroup label="{{ $country->name }}">

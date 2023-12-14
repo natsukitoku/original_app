@@ -1,34 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-
-        <h1>留学予定編集</h1>
+    <h1>留学予定編集</h1>
     <div>
         <a href="{{ route('mypage.index.plans') }}">&lt;戻る</a>
     </div>
 
-    <form method="POST" action="{{ route('mypage.plans') }}">
+    <form method="POST" action="{{ route('mypage.update.plans', $abroadingplan) }}">
         @csrf
-        <div style="margin: 24px">
-            <label for="countries">国名選択</label>
-            <select name="country_id" id="countries">
-                @foreach ($countries as $country)
-                    @if ($abroadingplan->city->country_id == $country->id)
-                        <option value="{{ $country->id }}" selected>{{ $country->name }}</option>
+        @method('PUT')
+        <label for="countries">行き先選択</label>
+        <select id="cities" name='city_id'>
+            @foreach ($countries as $country)
+                <optgroup label="{{ $country->name }}">
+                    @foreach ($country->cities as $city)
+                    @if ($abroadingplan->city->id == $city->id)
+                    <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
                     @else
-                        <option value="{{ $country->id }}">{{ $country->name }}</option>
-                    @endif
-                @endforeach
-            </select>
-        </div>
-        <div style="margin: 24px">
-            <label for="city">都市名</label>
-            <select name="city_id" id="cities">
-                @foreach ($cities as $city)
                     <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-        </div>
+                    @endif
+                    @endforeach
+                </optgroup>
+            @endforeach
+        </select>
         <div style="margin: 24px">
             <div style="margin-bottom: 8px">
                 <label for="fromdate">いつから?</label>

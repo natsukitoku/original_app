@@ -12,7 +12,12 @@
         <ul>
             @foreach ($followees as $followee)
                 <li>{{ $followee->name }}</li>
-                <button>unfollow</button>
+                {{-- <form action="{{ route('follows.unfollow')}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="followee_id" value="{{ $user->id }}">
+                    <button type="submit">unfollow</button>
+                </form> --}}
             @endforeach
         </ul>
     </div>

@@ -24,23 +24,25 @@ class TodoController extends Controller
         // クエリを組み立てるためのビルダーの準備
         $query = Todo::query();
 
+
         // それぞれパラメータに指定があれば検索条件を付け加えていく
-        if($priority == 1) {
-            $query->orderBy('priority_num', 'DESC');
+        if ($priority == 1) {
+            $query->where('user_id', '=', Auth::id())->orderBy('priority_num', 'DESC');
         }
 
-        if($due == 1) {
-            $query->orderBy('duedate', 'ASC');
+        if ($due == 1) {
+            $query->where('user_id', '=', Auth::id())->orderBy('duedate', 'ASC');
         }
 
-        if($status == "todo") {
-            $query->where('done', '=', '0');
-        } elseif($status == "done") {
-            $query->where('done', '=', '1');
+        if ($status == "todo") {
+            $query->where('user_id', '=', Auth::id())->where('done', '=', '0');
+        } elseif ($status == "done") {
+            $query->where('user_id', '=', Auth::id())->where('done', '=', '1');
         }
 
         // get()を実行することで実際にDBへの問い合わせが実行される
-        $todos = $query->get();
+        $todos = $query->where('user_id', '=', Auth::id())->get();
+
 
         return view('todos.index', compact('todos'));
     }

@@ -30,7 +30,7 @@ class MyPageController extends Controller
 
         $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
-    
+
         $done_count = Todo::where('user_id', '=', Auth::id())->where('done', '=', '1')->count();
 
 
@@ -148,6 +148,23 @@ class MyPageController extends Controller
         $cities = City::all();
 
         return view('mypage.edit_plans', compact('countries', 'cities', 'abroadingplan'));
+    }
+
+    public function update_abroading_plans(Request $request, AbroadingPlan $abroadingplan)
+    {
+        $request->validate([
+            'city_id' => 'required',
+            'from_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+        $abroadingplan->user_id = Auth::id();
+        $abroadingplan->city_id = $request->input('city_id');
+        $abroadingplan->from_date = $request->input('from_date');
+        $abroadingplan->end_date = $request->input('end_date');
+        $abroadingplan->save();
+
+        return to_route('mypage.index.plans');
     }
 
     public function store_abroading_plans(Request $request)

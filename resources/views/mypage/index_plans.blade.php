@@ -20,7 +20,7 @@
                 <p>いつまで？：{{ $abroadingplan->end_date }}</p>
             </div>
             <a href="{{ route('mypage.edit.plans', $abroadingplan) }}">編集</a>
-            <form action="{{ route('mypage.abroadingplan.destroy', $abroadingplan) }}" method="POST">
+            <form action="{{ route('mypage.destroy.plans', $abroadingplan) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" value="{{ $abroadingplan->id }}">

@@ -49,4 +49,12 @@ class FollowController extends Controller
 
         return to_route('follows.search_friends');
     }
+
+    public function unfollow(User $user)
+    {
+        $user->$followees->delete();
+
+        dd($user);
+
+    }
 }

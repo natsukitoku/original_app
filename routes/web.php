@@ -42,8 +42,9 @@ Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage/plans', 'index_abroading_plans')->name('mypage.index.plans');
     Route::get('/mypage/plans/create', 'create_abroading_plans')->name('mypage.create.plans');
     Route::post('/mypage/plans', 'store_abroading_plans')->name('mypage.plans');
-    Route::delete('/myapge/{abroadingplan}', 'destroy_abroading_plans')->name('mypage.abroadingplan.destroy');
     Route::get('mypage/{abroadingplan}/edit', 'edit_abroading_plans')->name('mypage.edit.plans');
+    Route::put('/mypage/{abroadingplan}', 'update_abroading_plans')->name('mypage.update.plans');
+    Route::delete('/myapge/{abroadingplan}', 'destroy_abroading_plans')->name('mypage.destroy.plans');
 });
 
 Route::get('countries/{country}/favorite', [CountryController::class, 'favorite'])->name('countries.favorites');
@@ -71,6 +72,7 @@ Route::controller(FollowController::class)->group(function () {
     Route::get('/follows', 'index')->name('follows.index')->middleware('auth');
     Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
     Route::post('/follows/follow', 'register_friends')->name('follows.follow');
+    Route::delete('/follows/{user}', 'unfollow')->name('follows.unfollow');
 });
 
 Route::controller(CommentController::class)->group(function () {
