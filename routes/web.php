@@ -72,6 +72,7 @@ Route::controller(FollowController::class)->group(function () {
     Route::get('/follows', 'index')->name('follows.index')->middleware('auth');
     Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
     Route::post('/follows/follow', 'register_friends')->name('follows.follow');
+    Route::get('/follows/{follow}/show', 'show')->name('follows.show');
     Route::delete('/follows/{user}', 'unfollow')->name('follows.unfollow');
 });
 

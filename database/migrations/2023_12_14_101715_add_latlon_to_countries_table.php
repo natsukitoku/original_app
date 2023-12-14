@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('countries', function (Blueprint $table) {
-            $table->float('lat')->after('name');
-            $table->float('lon')->after('lat');
+            $table->float('lat', 10, 6)->after('name');
+            $table->float('lon', 10, 6)->after('lat');
         });
     }
 

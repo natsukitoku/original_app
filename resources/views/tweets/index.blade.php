@@ -14,7 +14,7 @@
     <div style="margin: 24px">
         @foreach ($tweets as $tweet)
             <div style="border: solid 1px; margin: 16px">
-                <h4>{{ $tweet->user->name }}</h4>
+                <a href="{{route('follows.show', )}}"><h4>{{ $tweet->user->name }}</h4></a>
                 <a href="{{ route('tweets.edit', $tweet) }}">編集</a>
                 <form action="{{ route('tweets.destroy', $tweet) }}" method="POST">
                     @csrf
