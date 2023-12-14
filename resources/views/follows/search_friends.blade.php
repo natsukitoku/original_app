@@ -11,7 +11,7 @@
             <form action="{{ route('follows.follow') }}" method="POST">
                 @csrf
                 <li>
-                    <span>{{ $user->name }}</span>
+                    <a href="{{route('follows.show', $user)}}">{{ $user->name }}</a>
                     @if (isset($abroading_plans))
                         @foreach ($user->abroading_plans as $abroading_plan)
                             <p>{{ $user->abroading_plan->city->name }}</p>

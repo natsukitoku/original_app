@@ -11,7 +11,12 @@
     <div>
         <ul>
             @foreach ($followees as $followee)
-                <li>{{ $followee->name }}</li>
+            @php
+                $user = $followee;
+            @endphp
+                <li>
+                    <a href="{{route('follows.show', $user)}}">{{ $user->name }}</a>
+                </li>
                 {{-- <form action="{{ route('follows.unfollow')}}" method="POST">
                     @csrf
                     @method('DELETE')

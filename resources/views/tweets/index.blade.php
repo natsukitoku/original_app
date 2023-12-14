@@ -13,8 +13,11 @@
     </div>
     <div style="margin: 24px">
         @foreach ($tweets as $tweet)
+        @php
+            $user = $tweet->user_id;
+        @endphp
             <div style="border: solid 1px; margin: 16px">
-                <a href="{{route('follows.show', )}}"><h4>{{ $tweet->user->name }}</h4></a>
+                <a href="{{route('follows.show',$user)}}"><h4>{{ $tweet->user->name }}</h4></a>
                 <a href="{{ route('tweets.edit', $tweet) }}">編集</a>
                 <form action="{{ route('tweets.destroy', $tweet) }}" method="POST">
                     @csrf

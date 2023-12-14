@@ -2,9 +2,8 @@
 
 @section('content')
 
-    <h1>マイページ</h1>
     <div>
-        <a href="{{ route('tweets.index') }}">&lt;戻る</a>
+        <a href="{{ route('follows.search_friends') }}">&lt;戻る</a>
     </div>
     <div>
         <h1>{{ $user->name }}</h1>
@@ -54,7 +53,7 @@
             </li>
             <li style="margin: 16px">
                 <span>タスク完了数</span>
-                <p>{{ $done_count }}</p>
+                <p>{{ $doneCount }}</p>
             </li>
         </ul>
         <div>
@@ -87,7 +86,7 @@
                     <a href="{{ route('comments.create', $tweet) }}">コメントする</a>
                 @endforeach
             @else
-            <h6>つぶやきはありません。</h6>
+                <h6>つぶやきはありません。</h6>
             @endif
         </div>
 

@@ -53,7 +53,7 @@ Route::controller(TweetController::class)->group(function () {
     Route::get('/tweets', 'index')->name('tweets.index');
     Route::get('/tweets/create', 'create')->name('tweets.create');
     Route::post('/tweets', 'store')->name('tweets.store');
-    Route::get('/tweets/{tweet}','show')->name('tweets.show');
+    Route::get('/tweets/{tweet}', 'show')->name('tweets.show');
     Route::get('/tweets/{tweet}/edit', 'edit')->name('tweets.edit');
     Route::put('tweets/{tweet}', 'update')->name('tweets.update');
     Route::delete('/tweets/{tweet}', 'destroy')->name('tweets.destroy');
@@ -72,7 +72,7 @@ Route::controller(FollowController::class)->group(function () {
     Route::get('/follows', 'index')->name('follows.index')->middleware('auth');
     Route::get('/follows/search', 'search_friends')->name('follows.search_friends');
     Route::post('/follows/follow', 'register_friends')->name('follows.follow');
-    Route::get('/follows/{follow}/show', 'show')->name('follows.show');
+    Route::get('/follows/{user}/show', 'show')->name('follows.show');
     Route::delete('/follows/{user}', 'unfollow')->name('follows.unfollow');
 });
 

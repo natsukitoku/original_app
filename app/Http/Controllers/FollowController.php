@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Follow;
 use App\Models\User;
+use App\Models\Todo;
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,11 +52,29 @@ class FollowController extends Controller
         return to_route('follows.search_friends');
     }
 
+    public function show(User $user)
+    {
+        $abroadingPlans = $user->abroading_plans;
+
+        $userId = $user->id;
+
+        $todos = Todo::where('user_id', '=', $userId)->where('is_public', '=', '0')->get();
+
+        $tweets = Tweet::where('user_id', '=', $userId)->get();
+
+
+        $favorites = $user->favorites(Country::class)->get();
+
+
+        $doneCount = Todo::where('user_id', '=', $userId)->where('done', '=', '1')->count();
+
+        return view('follows.show', compact('user', 'abroadingPlans', 'todos', 'tweets', 'favorites', 'doneCount'));
+    }
+
     public function unfollow(User $user)
     {
         $user->$followees->delete();
 
         dd($user);
-
     }
 }
