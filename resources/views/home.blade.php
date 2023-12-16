@@ -52,7 +52,7 @@
                 font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
             }
         </style>
-        <div class="container" style="margin: 20px">
+        <div class="container" style="margin-top: 48px">
             <h1>Hello! {{ $user->name }}さん!</h1>
             @if ($abroadingPlan)
                 <h2>留学
@@ -78,10 +78,10 @@
                 </h2>
             @endif
         </div>
-        <div id="map" style="height: 420px; margin-top: 192px"></div>
-        <div style="margin-top: 480px">
+        <div id="map"></div>
+        <div style="margin-top: 560px; margin-left:24px; margin-right: 24px">
             <h2>ワーホリ協定国一覧</h2>
-            <table class="table table-sm" style="margin: 24px">
+            <table class="table table-sm" style="margin-top:32px">
                 <tr style="font-size: 16px">
                     <th>国名</th>
                     <th>応募可能時期</th>
@@ -95,12 +95,12 @@
                         <td>{{ $country->visa_information->people }}</td>
                         <td>
                             @if ($country->isFavoritedBy(Auth::user()))
-                                <a href="{{ route('countries.favorites', $country) }}" style="text-decoration:none">
+                                <a class="link fav" href="{{ route('countries.favorites', $country) }}">
                                     <i class="fa fa-heart"></i>
                                     お気に入り解除
                                 </a>
                             @else
-                                <a href="{{ route('countries.favorites', $country) }}" style="text-decoration:none">
+                                <a class="link fav" href="{{ route('countries.favorites', $country) }}">
                                     <i class="fa fa-heart"></i>
                                     お気に入り
                                 </a>
@@ -117,7 +117,7 @@
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v11',
                 center: [138.4477649, 35.5042661],
-                zoom: 4
+                zoom: 1
             });
 
             @php

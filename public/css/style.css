@@ -1,0 +1,62 @@
+.back {
+    text-decoration: none;
+    color: black;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.link-menu {
+    padding: 8px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.fa {
+    color: red;
+}
+
+.fav {
+    color: black;
+}
+
+#map {
+    margin-top: 224px;
+    margin-left: 0;
+    margin-right: 0;
+    height: 420px;
+    width: auto;
+
+}
+
+
+.card {
+    width: 80%;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* follows */
+.follow-btn {
+    float: right;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+/* todos */
+.todo-content {
+    margin-left: 32px;
+}
+
+/* tweets */
+.comments {
+    margin-right: 0px;
+}
+
+.tweets {
+    margin-left: 0px;
+}

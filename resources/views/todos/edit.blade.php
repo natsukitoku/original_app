@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Todoリストの編集</h1>
+    <h1 style="margin-top: 32px">Todoリストの編集</h1>
     <div>
-        <a href="{{ route('todos.index') }}">&lt;戻る</a>
+        <a class="back" href="{{ route('todos.index') }}">&lt;戻る</a>
     </div>
     <form action="{{ route('todos.update', $todo) }}" method="POST">
         @csrf

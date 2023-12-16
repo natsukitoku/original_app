@@ -13,14 +13,14 @@
 
                     <div class="form-group row">
                         <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span
-                                class="ml-1 samuraimart-require-input-label"><span
-                                    class="samuraimart-require-input-label-text">必須</span></span></label>
+                                class="ml-1 abroading-app-require-input-label"><span
+                                    class="abroading-app-require-input-label-text">必須</span></span></label>
 
                         <div class="col-md-7">
                             <input id="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror samuraimart-login-input"
+                                class="form-control @error('name') is-invalid @enderror abroading-app-login-input"
                                 name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
-                                placeholder="侍 太郎">
+                                placeholder="山田 花子">
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -32,14 +32,14 @@
 
                     <div class="form-group row">
                         <label for="email" class="col-md-5 col-form-label text-md-left">メールアドレス<span
-                                class="ml-1 samuraimart-require-input-label"><span
-                                    class="samuraimart-require-input-label-text">必須</span></span></label>
+                                class="ml-1 abroading-app-require-input-label"><span
+                                    class="abroading-app-require-input-label-text">必須</span></span></label>
 
                         <div class="col-md-7">
                             <input id="email" type="email"
-                                class="form-control @error('email') is-invalid @enderror samuraimart-login-input"
+                                class="form-control @error('email') is-invalid @enderror abroading-app-login-input"
                                 name="email" value="{{ old('email') }}" required autocomplete="email"
-                                placeholder="samurai@samurai.com">
+                                placeholder="abcd@abcd.com">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -52,12 +52,12 @@
 
                     <div class="form-group row">
                         <label for="password" class="col-md-5 col-form-label text-md-left">パスワード<span
-                                class="ml-1 samuraimart-require-input-label"><span
-                                    class="samuraimart-require-input-label-text">必須</span></span></label>
+                                class="ml-1 abroading-app-require-input-label"><span
+                                    class="abroading-app-require-input-label-text">必須</span></span></label>
 
                         <div class="col-md-7">
                             <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror samuraimart-login-input"
+                                class="form-control @error('password') is-invalid @enderror abroading-app-login-input"
                                 name="password" required autocomplete="new-password">
 
                             @error('password')
@@ -72,13 +72,13 @@
                         <label for="password-confirm" class="col-md-5 col-form-label text-md-left"></label>
 
                         <div class="col-md-7">
-                            <input id="password-confirm" type="password" class="form-control samuraimart-login-input"
+                            <input id="password-confirm" type="password" class="form-control abroading-app-login-input"
                                 name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn samuraimart-submit-button w-100">
+                        <button type="submit" class="btn abroading-app-submit-button w-100">
                             アカウント作成
                         </button>
                     </div>

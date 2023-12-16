@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>留学先</h1>
+    <h1 style="margin-top: 32px">留学先</h1>
     <div>
-        <a href="{{ route('mypage') }}">&lt;戻る</a>
+        <a class="back" href="{{ route('mypage') }}">&lt;戻る</a>
     </div>
     <div>
-        <a href="{{ route('mypage.create.plans') }}">新規登録する</a>
+        <a class="link" href="{{ route('mypage.create.plans') }}">新規登録する</a>
     </div>
     @foreach ($abroadingplans as $abroadingplan)
         <div style="border: 1px solid; margin: 8px">
@@ -19,7 +19,7 @@
             <div>
                 <p>いつまで？：{{ $abroadingplan->end_date }}</p>
             </div>
-            <a href="{{ route('mypage.edit.plans', $abroadingplan) }}">編集</a>
+            <a class="link" href="{{ route('mypage.edit.plans', $abroadingplan) }}">編集</a>
             <form action="{{ route('mypage.destroy.plans', $abroadingplan) }}" method="POST">
                 @csrf
                 @method('DELETE')

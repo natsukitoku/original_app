@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>つぶやき編集</h1>
+    <h1 style="margin-top: 32px">つぶやき編集</h1>
 
     <div>
-        <a href="{{ route('tweets.index') }}">&lt;戻る</a>
+        <a class="back" href="{{ route('tweets.index') }}">&lt;戻る</a>
     </div>
     <form action="{{ route('tweets.update', $tweet) }}" method="POST">
         @csrf

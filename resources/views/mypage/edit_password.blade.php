@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <h1>パスワード変更</h1>
+    <h1 style="margin-top: 32px">パスワード変更</h1>
     <div>
-        <a href="{{route('mypage.edit')}}">&lt;戻る</a>
+        <a class="back" href="{{route('mypage.edit')}}">&lt;戻る</a>
     </div>
     <form method="POST" action="{{ route('mypage.update_password') }}">
         @csrf

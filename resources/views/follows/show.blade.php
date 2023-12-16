@@ -2,14 +2,14 @@
 
 @section('content')
 
-    <div>
-        <a href="{{ route('follows.search_friends') }}">&lt;戻る</a>
+    <div style="margin-top: 32px">
+        <a class="back" href="{{ route('follows.search_friends') }}">&lt;戻る</a>
     </div>
-    <div>
+    <div style="margin-top: 16px">
         <h1>{{ $user->name }}</h1>
-        <ul style="display: flex">
+        <ul style="display: flex; justify-content: space-between; list-style:none">
             <li style="margin: 16px">
-                <span>留学
+                <span style="font-size: 24px">留学
                     @if (count($abroadingPlans))
                         @php
                             $latestAbroadingPlan = $abroadingPlans->sortBy('from_date')->first();
@@ -23,13 +23,13 @@
                             $diff = date_diff($now, $date);
                         @endphp
                         @if ($diff->y !== 0)
-                            まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
+                            まで残り<br>{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
                         @elseif ($diff->m !== 0)
-                            まで残り{{ $diff->m }}月{{ $diff->d }}日!
+                            まで残り<br>{{ $diff->m }}月{{ $diff->d }}日!
                         @elseif($diff->invert == 0)
-                            まで残り{{ $diff->d }}日!
+                            まで残り<br>{{ $diff->d }}日!
                         @elseif($diff->invert == 1)
-                            {{ $diff->d }}日!
+                            <br>{{ $diff->d }}日!
                         @endif
                     @else
                         </br>未定
@@ -38,25 +38,26 @@
             </li>
             <li style="margin: 16px">
                 @if (count($abroadingPlans))
-                    <span>留学予定</span></br>
+                    <span style="font-size: 24px">留学予定</span>
                     @foreach ($abroadingPlans as $abroadingPlan)
-                        {{ $abroadingPlan->city->name }}</br>
+                        <p style="font-size: 24px">{{ $abroadingPlan->city->name }}</p>
                     @endforeach
                 @elseif (count($favorites))
-                    <span>気になる国</span></br>
+                    <span style="font-size: 24px">気になる国</span></br>
                     @foreach ($favorites as $fav)
                         {{ App\Models\Country::find($fav->favoriteable_id)->name }}
                     @endforeach
                 @else
-                    <span>留学</br>予定なし</span>
+                    <span style="font-size: 24px">留学</br>予定なし</span>
                 @endif
             </li>
             <li style="margin: 16px">
-                <span>タスク完了数</span>
-                <p>{{ $doneCount }}</p>
+                <span style="font-size: 24px">タスク完了数</span>
+                <p style="font-size: 24px">{{ $doneCount }}</p>
             </li>
         </ul>
-        <div>
+        <hr>
+        <div style="margin-top: 24px; margin-bottom: 24px">
             <h4>公開中のtodo一覧</h4>
             @if (count($todos))
                 @foreach ($todos as $todo)
@@ -72,10 +73,13 @@
                     </div>
                 @endforeach
             @else
+            <div style="margin: 24px">
                 <h6>現在公開中のTodoはありません。</h6>
+            </div>
             @endif
         </div>
-        <div style="margin-top: 16px">
+        <hr>
+        <div style="margin-top: 24px">
             <h4>つぶやき一覧</h4>
             @if (count($tweets))
                 @foreach ($tweets as $tweet)
@@ -83,10 +87,12 @@
                         <p>{{ $tweet->user->name }}</p>
                         <p>{{ $tweet->content }}</p>
                     </div>
-                    <a href="{{ route('comments.create', $tweet) }}">コメントする</a>
+                    <a class="link" href="{{ route('comments.create', $tweet) }}">コメントする</a>
                 @endforeach
             @else
+            <div style="margin: 24px">
                 <h6>つぶやきはありません。</h6>
+            </div>
             @endif
         </div>
 

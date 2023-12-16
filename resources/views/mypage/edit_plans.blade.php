@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>留学予定編集</h1>
+    <h1 style="margin-top: 32px">留学予定編集</h1>
     <div>
-        <a href="{{ route('mypage.index.plans') }}">&lt;戻る</a>
+        <a class="back" href="{{ route('mypage.index.plans') }}">&lt;戻る</a>
     </div>
 
     <form method="POST" action="{{ route('mypage.update.plans', $abroadingplan) }}">

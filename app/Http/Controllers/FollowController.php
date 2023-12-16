@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Follow;
 use App\Models\User;
 use App\Models\Todo;
 use App\Models\Tweet;
@@ -40,6 +39,7 @@ class FollowController extends Controller
         // whereNotInを使うことで、第二引数に指定されたidの配列を含まないユーザーのみを抽出する
         $users = User::whereNotIn('id', $ignoreIds)->get();
 
+
         return view('follows.search_friends', compact('users'));
     }
 
@@ -71,10 +71,14 @@ class FollowController extends Controller
         return view('follows.show', compact('user', 'abroadingPlans', 'todos', 'tweets', 'favorites', 'doneCount'));
     }
 
-    public function unfollow(User $user)
+    public function unfollow(Request $request)
     {
-        $user->$followees->delete();
+        $followeeId = $request->input('followee_id');
 
-        dd($user);
+        $user = Auth::user();
+
+        $user->followees()->detach($followeeId);
+
+        return to_route('follows.index');
     }
 }

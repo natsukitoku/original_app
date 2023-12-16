@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>メールアドレスの変更</h1>
+    <h1 style="margin-top: 32px">メールアドレスの変更</h1>
     <div>
-        <a href="{{ route('mypage.edit') }}">戻る</a>
+        <a class="back" href="{{ route('mypage.edit') }}">戻る</a>
     </div>
 
     <form method="POST" action="{{ route('mypage.update_email') }}">
