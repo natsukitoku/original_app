@@ -4,7 +4,7 @@
 <div class="all">
     <h1 style="margin-top: 32px">コメントの作成</h1>
 
-    <div style="margin-bottom: 24px; margin-top:24px">
+    <div style="margin-bottom: 24px">
         <a class="back" href="{{ route('tweets.index') }}">&lt;戻る</a>
     </div>
     <div style="margin-left: 88px">

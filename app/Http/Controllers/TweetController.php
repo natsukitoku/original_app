@@ -92,7 +92,7 @@ class TweetController extends Controller
         $tweet->content = $request->input('content');
         $tweet->save();
 
-        return redirect()->route('tweets.index', $tweet)->with('flash_message', '投稿を編集しました。');
+        return to_route('tweets.index', $tweet);
     }
 
     /**
@@ -105,6 +105,6 @@ class TweetController extends Controller
     {
         $tweet->delete();
 
-        return redirect()->route('tweets.index');
+        return to_route('tweets.index');
     }
 }

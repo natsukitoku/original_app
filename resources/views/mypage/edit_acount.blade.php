@@ -9,11 +9,21 @@
     <div style="width: 480px; margin-left: 48px">
         <ul style="list-style: none">
             <li>
-                <a class="link" href="{{ route('mypage.edit_password') }}">パスワードの変更</a>
+                <a class="link" href="{{ route('mypage.edit_username')}}">ユーザー名の変更
+                    <i class="fas fa-chevron-right fa-2x" style="font-size:24px; float:right"></i>
+                </a>
             </li>
             <hr>
             <li>
-                <a class="link" href="{{ route('mypage.edit_email') }}">メールアドレスの変更</a>
+                <a class="link" href="{{ route('mypage.edit_password') }}">パスワードの変更
+                    <i class="fas fa-chevron-right fa-2x" style="font-size:24px; float:right"></i>
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a class="link" href="{{ route('mypage.edit_email') }}">メールアドレスの変更
+                    <i class="fas fa-chevron-right fa-2x" style="font-size:24px; float:right"></i>
+                </a>
             </li>
         </ul>
     </div>

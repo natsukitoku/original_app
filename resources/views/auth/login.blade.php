@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h3 class="mt-3 mb-3">ログイン</h3>
+                <h3 class="mt-4 mb-3">ログイン</h3>
 
                 <hr>
                 <form method="POST" action="{{ route('login') }}">
@@ -22,7 +22,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 16px">
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror samuraimart-login-input"
                             name="password" required autocomplete="current-password" placeholder="パスワード">
@@ -34,7 +34,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="margin-top: 8px">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                 {{ old('remember') ? 'checked' : '' }}>
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="mt-3 btn samuraimart-submit-button w-100">
+                        <button type="submit" class="mt-3 w-100 btn btn-success">
                             ログイン
                         </button>
 

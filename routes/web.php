@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MyPageController;
@@ -27,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::resource('home', HomeController::class)->middleware(['auth', 'verified']);
 Auth::routes(['verify' => true]);
 
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class])->name('logout');
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(MyPageController::class)->group(function () {
@@ -34,8 +37,10 @@ Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage/setting', 'setting')->name('mypage.setting');
     Route::get('/mypage/edit', 'edit_account')->name('mypage.edit');
     Route::put('/mypage', 'update_account')->name('mypage.update');
+    Route::get('/mypage/username/edit', 'edit_username')->name('mypage.edit_username');
     Route::get('/mypage/password/edit', 'edit_password')->name('mypage.edit_password');
     Route::get('/mypage/email/edit', 'edit_email')->name('mypage.edit_email');
+    Route::put('/mypage/username', 'update_username')->name('mypage.update_username');
     Route::put('/mypage/password', 'update_password')->name('mypage.update_password');
     Route::put('/mypage/email', 'update_email')->name('mypage.update_email');
     Route::get('/mypage/favorites', 'favorite')->name('mypage.favorites');

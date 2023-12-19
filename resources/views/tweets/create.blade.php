@@ -3,7 +3,8 @@
 @section('content')
 <div class="all">
     <h1 style="margin-top: 32px">つぶやき作成</h1>
-    <div>
+    
+    <div style="margin-bottom:24px">
         <a class="back" href="{{route('tweets.index')}}">&lt;戻る</a>
     </div>
     <div style="margin-left: 56px">

@@ -90,7 +90,7 @@ class TodoController extends Controller
 
 
 
-        return redirect()->route('todos.index')->with('flash_massege', 'Todoリストの作成が完了しました!');
+        return to_route('todos.index');
     }
 
 
@@ -145,6 +145,6 @@ class TodoController extends Controller
     {
         $todo->delete();
 
-        return redirect()->route('todos.index');
+        return to_route('todos.index');
     }
 }

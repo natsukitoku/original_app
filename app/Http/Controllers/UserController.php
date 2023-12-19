@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Psy\CodeCleaner\ReturnTypePass;
 
 class UserController extends Controller
 {
@@ -34,7 +35,8 @@ class UserController extends Controller
 
         $user->name = $request->input('name') ? $request->input('name') : $user->name;
         $user->email = $request->input('email') ? $request->input('email') : $user->email;
-        
+
+        return to_route('mypage.edit');
     }
 
 }

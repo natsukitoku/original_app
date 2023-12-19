@@ -6,14 +6,14 @@
     <div style="margin-bottom: 24px; margin-top:24px">
         <a class="back" href="{{route('mypage.edit')}}">&lt;戻る</a>
     </div>
-    <div style="margin-left: 48px">
+    <div style="margin-left: auto; margin-right: auto">
         <form method="POST" action="{{ route('mypage.update_password') }}">
             @csrf
             @method('PUT')
             <div>
                 <label for="password">新しいパスワード</label>
                 <div>
-                    <input id="password" type="password" @error('password') id-invalid
+                    <input id="password" type="password" class="form-control @error('password') is-invalid
                     @enderror" name="password" required autocomplete="new-password">
 
                     @error('password')
@@ -28,12 +28,12 @@
                 <label for="password-confirm">確認用</label>
 
                 <div>
-                    <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password">
+                    <input id="password-confirm" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
 
-            <div style="margin-top: 16px; margin-left: 48px">
-                <button type="submit">
+            <div style="margin-top: 16px; text-align: right">
+                <button type="submit" class="btn btn-outline-success">
                     パスワード更新
                 </button>
             </div>

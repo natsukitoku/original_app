@@ -1,24 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="all">
-    <h1 style="margin-top: 32px">設定</h1>
-    <div style="margin-bottom: 24px; margin-top:24px">
-        <a class="back" href="{{ route('mypage') }}">&lt;戻る</a>
-    </div>
+    <div class="all">
+        <h1 style="margin-top: 32px">設定</h1>
+        <div style="margin-bottom: 24px; margin-top:24px">
+            <a class="back" href="{{ route('mypage') }}">&lt;戻る</a>
+        </div>
 
-    <div style="width: 480px; margin-left: 48px">
-        <ul style="list-style: none">
-            <li><a class="link" href="{{ route('mypage.edit') }}">アカウント情報登録</a>
-            </li>
-            <hr>
-            <li><a class="link" href="{{ route('mypage.favorites') }}">気になる国一覧</a></li>
-            <hr>
-            <li><a class="link" href="{{ route('mypage.index.plans') }}">留学予定</a></li>
-            <hr>
-            <li><a class="link" href="#">ログアウト</a></li>
-
-        </ul>
+        <div style="width: 480px; margin-left: 48px">
+            <ul style="list-style: none">
+                <li><a class="link" href="{{ route('mypage.edit') }}">アカウント情報登録
+                    <i class="fas fa-chevron-right fa-2x" style="float:right; font-size:24px"></i>
+                </a>
+                </li>
+                <hr>
+                <li><a class="link" href="{{ route('mypage.favorites') }}">気になる国一覧
+                    <i class="fas fa-chevron-right fa-2x" style="float: right;font-size:24px"></i>
+                </a>
+                </li>
+                <hr>
+                <li><a class="link" href="{{ route('mypage.index.plans') }}">留学予定
+                    <i class="fas fa-chevron-right fa-2x" style="float: right;font-size:24px"></i>
+                </a>
+                </li>
+                <hr>
+                <li style="display: flex; justify-content:space-between">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" style="border: none; outline:none; background:transparent" data-bs-toggle="modal" data-bs-target="#logoutModal">ログアウト</button>
+                    </form>
+                    <i class="fas fa-chevron-right fa-2x" style="font-size:24px"></i>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+    <!--logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="logoutModalLabel">ログアウト</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ログアウトしますか？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger">ログアウト</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

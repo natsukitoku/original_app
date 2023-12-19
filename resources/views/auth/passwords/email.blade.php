@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
-                <h3 class="mt-3 mb-3">パスワード再設定</h3>
+                <h3 class="mt-4 mb-3">パスワード再設定</h3>
 
                 <p>
                     ご登録時のメールアドレスを入力してください。<br>
@@ -35,8 +35,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn samuraimart-submit-button w-100">
+                    <div class="form-group" style="margin-top: 16px">
+                        <button type="submit" class="btn btn-success w-100">
                             送信
                         </button>
                     </div>

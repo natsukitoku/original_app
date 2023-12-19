@@ -68,7 +68,7 @@ class MyPageController extends Controller
             return to_route('mypage.edit_password');
         }
 
-        return to_route('mypage')->with('flash_massage', 'パスワードを変更しました。');
+        return to_route('mypage.edit');
     }
 
 
@@ -95,27 +95,44 @@ class MyPageController extends Controller
         $user = Auth::user();
 
         if ($request->input('email') == $request->input('email_confirmation')) {
-            $user->email = bcrypt($request->input('email'));
+            $user->email = $request->input('email');
             $user->save();
         } else {
             return to_route('mypage.edit_email');
         }
 
-        return to_route('mypage')->with('flash_massage', 'メールアドレスを変更しました。');
+        return to_route('mypage.edit');
     }
 
-
-    // 登録情報更新機能
-    public function update_account(Request $request, User $user)
+    // ユーザー名の変更ページ
+    public function edit_username()
     {
-        $user = Auth::user();
+        return view('mypage.edit_username');
+    }
 
-        $user->name = $request->input('name') ? $request->input('name') : $user->name;
-        $user->email = $request->input('email') ? $request->input('email') : $user->email;
+    // ユーザー名の更新機能
+    public function update_username(Request $request)
+    {
+        $user =Auth::user();
+
+        $user->name = $request->input('name');
         $user->save();
 
-        return to_route('mypage');
+        return to_route('mypage.edit');
     }
+
+
+    // // 登録情報更新機能
+    // public function update_account(Request $request, User $user)
+    // {
+    //     $user = Auth::user();
+
+    //     $user->name = $request->input('name') ? $request->input('name') : $user->name;
+    //     $user->email = $request->input('email') ? $request->input('email') : $user->email;
+    //     $user->save();
+
+    //     return to_route('mypage');
+    // }
 
     // 気になる国登録機能
     public function favorite()
@@ -193,4 +210,3 @@ class MyPageController extends Controller
         return to_route('mypage.index.plans');
     }
 }
-

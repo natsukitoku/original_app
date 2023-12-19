@@ -14,7 +14,7 @@
     </div>
 
     <div style="margin-top: 16px">
-        <h1>{{ $user->name }}</h1>
+        <h1 style="font-size: 40px">{{ $user->name }}</h1>
         <ul style="display: flex; justify-content: space-between; list-style:none">
             <li style="margin: 16px">
                 <span style="font-size: 24px">留学
@@ -31,13 +31,13 @@
                             $diff = date_diff($now, $date);
                         @endphp
                         @if ($diff->y !== 0)
-                            まで残り</br>{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
+                            まで残り</br>{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日
                         @elseif ($diff->m !== 0)
-                            まで残り</br>{{ $diff->m }}月{{ $diff->d }}日!
+                            まで残り</br>{{ $diff->m }}月{{ $diff->d }}日
                         @elseif($diff->invert == 0)
-                            まで残り</br>{{ $diff->d }}日!
+                            まで残り</br>{{ $diff->d }}日
                         @elseif($diff->invert == 1)
-                            </br>{{ $diff->d }}日!
+                            </br>{{ $diff->d }}日
                         @endif
                     @else
                         </br>未定
@@ -66,7 +66,7 @@
         </ul>
         <hr>
         <div>
-            <h4>公開中のtodo一覧</h4>
+            <h4>公開中のTodo一覧</h4>
             @if (count($todos))
                 @foreach ($todos as $todo)
                     <div class="card">
