@@ -1,3 +1,7 @@
+.all {
+    margin:48px;
+}
+
 .back {
     text-decoration: none;
     color: black;
@@ -59,4 +63,9 @@
 
 .tweets {
     margin-left: 0px;
+}
+
+.comment-link {
+    border-color: green;
+    color: green;
 }

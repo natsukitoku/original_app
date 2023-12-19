@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="all">
     <h1 style="margin-top: 32px">マイページ</h1>
 
     <div style="display: flex; justify-content: space-between">
@@ -61,7 +61,7 @@
             </li>
             <li style="margin: 16px">
                 <span style="font-size: 24px">タスク完了数</span>
-                <p style="font-size: 24px">{{ $done_count }}</p>
+                <p style="font-size: 24px; text-align: center">{{ $done_count }}</p>
             </li>
         </ul>
         <hr>
@@ -70,11 +70,13 @@
             @if (count($todos))
                 @foreach ($todos as $todo)
                     <div class="card">
-                        <div class="card-body">
-                            <div style="margin-top: 32px; display: flex">
-                                <h5 class="card-title">留学先:{{ $todo->abroading_plan->city->name }}</h5>
-                                <p style="margin-right: 8px">優先度:{{ $todo->priority_num }}</p>
-                                <p>期限:{{ $todo->duedate }}</p>
+                        <div class="card-body" style="padding: 32px">
+                            <div>
+                                <h5 style="font-size: 24px">留学先:{{ $todo->abroading_plan->city->name }}</h5>
+                            </div>
+                            <div style="margin: 32px">
+                                <p style="margin-right: 8px; font-size: 16px">優先度:{{ $todo->priority_num }}</p>
+                                <p style="font-size: 16px">期限:{{ $todo->duedate }}</p>
                             </div>
                             <div style="margin: 32px">
                                 <h4>{{ $todo->content }}</h4>
@@ -98,7 +100,7 @@
                                 <h5>{{ $tweet->content }}</h5>
                             </div>
                             <div style="float: right">
-                                <a class="link link-menu" href="{{ route('comments.create', $tweet) }}">コメントする</a>
+                                <a class="link link-menu comment-link" href="{{ route('comments.create', $tweet) }}">コメントする</a>
                             </div>
                         </div>
                     </div>
@@ -107,6 +109,6 @@
                 <h6>つぶやきはありません。</h6>
             @endif
         </div>
-
     </div>
+</div>
 @endsection

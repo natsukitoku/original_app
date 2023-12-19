@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="all">
     <h1 style="margin-top: 32px">友達一覧</h1>
     <div style="display: flex; justify-content: space-between"">
         <div>
@@ -30,4 +31,5 @@
             </div>
         @endforeach
     </div>
+</div>
 @endsection

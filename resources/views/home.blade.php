@@ -52,7 +52,7 @@
                 font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
             }
         </style>
-        <div class="container" style="margin-top: 48px">
+        <div class="container" style="margin-top: 48px; text-align:center">
             <h1>Hello! {{ $user->name }}さん!</h1>
             @if ($abroadingPlan)
                 <h2>留学
@@ -79,7 +79,7 @@
             @endif
         </div>
         <div id="map"></div>
-        <div style="margin-top: 560px; margin-left:24px; margin-right: 24px">
+        <div class="all" style="margin-top: 560px">
             <h2>ワーホリ協定国一覧</h2>
             <table class="table table-sm" style="margin-top:32px">
                 <tr style="font-size: 16px">
@@ -117,7 +117,7 @@
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v11',
                 center: [138.4477649, 35.5042661],
-                zoom: 1
+                zoom: 0.5
             });
 
             @php

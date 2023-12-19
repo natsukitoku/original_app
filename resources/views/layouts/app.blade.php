@@ -46,7 +46,7 @@
             </div>
         @endif
 
-        <main class="py-4 m-5">
+        <main class="py-4">
             @yield('content')
         </main>
     </div>

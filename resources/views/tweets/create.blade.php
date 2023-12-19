@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="all">
     <h1 style="margin-top: 32px">つぶやき作成</h1>
     <div>
         <a class="back" href="{{route('tweets.index')}}">&lt;戻る</a>
@@ -16,4 +17,5 @@
             </div>
         </form>
     </div>
+</div>
 @endsection

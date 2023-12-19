@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="all">
     <h1 style="margin-top: 32px">Todoリストの作成</h1>
     <div>
         <a class="back" href="{{ route('todos.index') }}">&lt;戻る</a>
@@ -58,10 +59,11 @@
                     <label for="private"><input type="radio" name="is_public" value="1">非公開</label>
                 </div>
                 <input type="hidden" name="done" value="0">
-                <div style="margin-top: 16px">
+                <div style="margin-top: 16px; margin-left: 194px">
                     <button class="btn btn-outline-success" type="submit">登録</button>
                 </div>
             </form>
         </div>
     </div>
+</div>
 @endsection

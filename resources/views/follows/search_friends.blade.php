@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="all"
     <h1 style="margin-top: 32px">友達を探す</h1>
     <div>
         <a class="back" href="{{ route('follows.index') }}">&lt;戻る</a>
@@ -37,4 +38,5 @@
             @endforeach
         </ul>
     </div>
+</div>
 @endsection

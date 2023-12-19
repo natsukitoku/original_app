@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="all">
     <div style="margin-top: 32px">
         <a class="back" href="{{ route('follows.search_friends') }}">&lt;戻る</a>
     </div>
@@ -95,6 +95,6 @@
             </div>
             @endif
         </div>
-
     </div>
+</div>
 @endsection
