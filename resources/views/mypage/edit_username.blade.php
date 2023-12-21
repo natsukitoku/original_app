@@ -7,13 +7,13 @@
         <a class="back" href="{{ route('mypage.edit') }}">&lt;戻る</a>
     </div>
 
-    <div>
+    <div style="width: 560px; margin-right:auto; margin-left:auto">
         <form method="POST" action="{{ route('mypage.update_username') }}">
             @csrf
             @method('PUT')
-            <div style="margin-left:104px">
+            <div>
                 <label for="name">新しいユーザー名</label>
-                <div style="width: 400px">
+                <div>
                     <input id="name" class="form-control" type="name"  class="form-control @error('username') id-invalid
               @enderror" name="name" required>
 
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div style="margin-top: 16px; margin-left: 376px">
+            <div style="margin-top: 16px; text-align: right">
                 <button type="submit" class="btn btn-outline-success">
                     ユーザー名更新
                 </button>

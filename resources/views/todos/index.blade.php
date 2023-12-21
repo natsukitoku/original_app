@@ -31,14 +31,14 @@
                                 <h5 style="font-size: 24px">留学先:{{ $todo->abroading_plan->city->name }}</h5>
                                 <div style="display: flex; justify-content: space-between">
                                     <div style="margin-top: 8px; margin-right: 8px">
-                                        <a class="card-link link link-menu" href="{{ route('todos.edit', $todo) }}">編集</a>
+                                        <a class="card-link link link-menu" style="border: none" href="{{ route('todos.edit', $todo) }}"><i class="far fa-edit fa-lg"></i></a>
                                     </div>
                                     <div style="margin-right: 8px">
                                         <form action="{{ route('todos.destroy', $todo) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" value="{{ $todo->id }}">
-                                            <button type="submit" class="btn btn-outline-danger">削除</button>
+                                            <button type="submit" class="btn"><i class="fas fa-trash-alt fa-lg"></i></button>
                                         </form>
                                     </div>
                                     <div>
@@ -46,7 +46,7 @@
                                             @csrf
                                             @method('PUT')
                                             <input type="hidden" name="done" value="1">
-                                            <button type="submit" class="btn btn-outline-primary">完了</button>
+                                            <button type="submit" class="btn"><i class="fas fa-check fa-lg" style="color: red"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -67,14 +67,14 @@
                                 <h5 style="font-size: 24px">留学先:{{ $todo->abroading_plan->city->name }}</h5>
                                 <div style="display: flex; justify-content:space-between">
                                     <div style="margin-top: 8px; margin-right: 8px">
-                                        <a class="card-link link link-menu" href="{{ route('todos.edit', $todo) }}">編集</a>
+                                        <a class="card-link link link-menu" style="border: none" href="{{ route('todos.edit', $todo) }}"><i class="far fa-edit fa-lg"></i></a>
                                     </div>
                                     <div>
                                         <form action="{{ route('todos.destroy', $todo) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" value="{{ $todo->id }}">
-                                            <button type="submit" class="btn btn-outline-danger">削除</button>
+                                            <button type="submit" class="btn"><i class="fas fa-trash-alt fa-lg"></i></button>
                                         </form>
                                     </div>
                                 </div>

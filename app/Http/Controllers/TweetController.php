@@ -51,7 +51,7 @@ class TweetController extends Controller
         // $tweet->image
         $tweet->save();
 
-        return to_route('tweets.index')->with('flash_message', 'つぶやきが完了しました!');
+        return to_route('tweets.index');
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AbroadingPlan;
+use App\Models\City;
 use App\Models\User;
 use App\Models\Todo;
 use App\Models\Tweet;
@@ -23,7 +25,7 @@ class FollowController extends Controller
     }
 
 
-    public function search_friends()
+    public function search_friends(Request $request)
     {
         // フォローしているユーザーの情報を取得
         $followees = Auth::user()->followees;
@@ -38,6 +40,24 @@ class FollowController extends Controller
 
         // whereNotInを使うことで、第二引数に指定されたidの配列を含まないユーザーのみを抽出する
         $users = User::whereNotIn('id', $ignoreIds)->get();
+
+        if ($request->input('keyword')) {
+            $keyword = $request->input('keyword');
+
+            $cities = City::Where('name', 'LIKE', '%' . $keyword . '%')->get();
+
+            $cityIds = $cities->pluck('id')->toArray();
+
+            $abroadingPlaces = AbroadingPlan::whereIn('city_id', $cityIds)->get();
+
+            $userIds = $abroadingPlaces->pluck('user_id')->toArray();
+
+            $searchIds = array_filter($userIds, function ($id) use ($ignoreIds) {
+                return !in_array($id, $ignoreIds);
+            });
+
+            $users = User::whereIn('id', $searchIds)->get();
+        }
 
 
         return view('follows.search_friends', compact('users'));

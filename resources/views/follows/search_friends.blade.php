@@ -4,9 +4,18 @@
 <div class="all">
     <h1 style="margin-top: 32px">友達を探す</h1>
     <div>
-        <a class="back" href="{{ route('follows.index') }}">&lt;戻る</a>
+        <a class="back" href="{{ route('follows.search_friends') }}">&lt;戻る</a>
     </div>
     <div>
+        <div class="input-group" style="width: 240px; margin-top:24px; margin-left: auto; margin-right: 0">
+            <form action="{{route('follows.search_friends')}}" method="get">
+                @csrf
+                <input type="text" name="keyword" class="form-control" placeholder="留学先検索">
+                <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
+            </form>
+        </div>
+    </div>
+    <div style="margin-top: 32px">
         <ul>
             @foreach ($users as $user)
                 <form action="{{ route('follows.follow') }}" method="POST">

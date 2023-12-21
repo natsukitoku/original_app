@@ -14,7 +14,14 @@
     </div>
 
     <div style="margin-top: 16px">
-        <h1 style="font-size: 40px">{{ $user->name }}</h1>
+        <div style="display: flex">
+            <div>
+                <h1 style="font-size: 40px">{{ $user->name }}</h1>
+            </div>
+            <div style="margin-left: 24px; margin-top:8px">
+                <a href="#"><i class="far fa-comments fa-2x"></i></i></a>
+            </div>
+        </div>
         <ul style="display: flex; justify-content: space-between; list-style:none">
             <li style="margin: 16px">
                 <span style="font-size: 24px">留学

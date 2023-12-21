@@ -8,9 +8,12 @@
             <a class="back" href="{{ route('home') }}">&lt;戻る</a>
         </div>
         <div>
-            <a class="link link-menu" href="{{ route('follows.search_friends') }}">新しい友達を探す</a>
+            <a class="link link-menu" href="{{ route('follows.search_friends') }}">新しい友達を探す
+                <i class="fas fa-user-plus"></i>
+            </a>
         </div>
     </div>
+
     <div>
         @foreach ($followees as $followee)
             @php

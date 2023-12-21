@@ -69,3 +69,19 @@
     border-color: green;
     color: green;
 }
+
+.hidden-view {
+    display: none;
+}
+
+.hidden-view.open {
+    display: block;
+}
+
+.showcomment::before {
+    content: "コメントを見る";
+}
+
+.hidden-view.open + .showcomment::before {
+    content: "閉じる";
+}
