@@ -29,6 +29,10 @@
                         <div class="card-body">
                             <div style="display: flex; justify-content: space-between">
                                 <h5 style="font-size: 24px">留学先:{{ $todo->abroading_plan->city->name }}</h5>
+                                @if ($todo->isSoonDuedate())
+                                <p>期限が近いです</p>
+
+                                @endif
                                 <div style="display: flex; justify-content: space-between">
                                     <div style="margin-top: 8px; margin-right: 8px">
                                         <a class="card-link link link-menu" style="border: none" href="{{ route('todos.edit', $todo) }}"><i class="far fa-edit fa-lg"></i></a>
