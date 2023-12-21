@@ -10,8 +10,12 @@
         <div class="input-group" style="width: 240px; margin-top:24px; margin-left: auto; margin-right: 0">
             <form action="{{route('follows.search_friends')}}" method="get">
                 @csrf
-                <input type="text" name="keyword" class="form-control" placeholder="留学先検索">
-                <button class="btn btn-outline-success" type="submit" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
+                <div style="display: flex; height:36px">
+                    <input type="text" name="keyword" class="form-control" placeholder="留学先検索">
+                    <div>
+                        <button class="btn btn-outline-success" type="submit" id="button-addon2" style="margin-left: 8px; width: 80px"><i class="fas fa-search"></i> 検索</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

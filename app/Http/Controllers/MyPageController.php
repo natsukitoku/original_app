@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\AbroadingPlan;
+use App\Models\Comment;
 use App\Models\Todo;
 use App\Models\Tweet;
 use DateTime;
@@ -25,6 +26,12 @@ class MyPageController extends Controller
         $todos = Todo::where('user_id', '=', Auth::id())->where('is_public', '=', '0')->get();
 
         $tweets = Tweet::where('user_id', '=', Auth::id())->get();
+
+        $tweetIds = $tweets->pluck('id')->toArray();
+
+        // $unwatchedComments = Comment::whereIn('tweet_id', '=', $tweetIds)->toArray();
+
+        dd($unwatchedComments);
 
         $favorites = $user->favorites(Country::class)->get();
 
@@ -68,7 +75,7 @@ class MyPageController extends Controller
             return to_route('mypage.edit_password');
         }
 
-        return to_route('mypage.edit');
+        return to_route('mypage.edi');
     }
 
 

@@ -55,7 +55,7 @@
                 @if (count($abroadingPlans))
                     <span style="font-size: 24px">留学予定</span>
                     @foreach ($abroadingPlans as $abroadingPlan)
-                        <p style="font-size: 24px">{{ $abroadingPlan->city->name }}</p>
+                        <p style="font-size: 24px; line-height:1em; margin-top: 8px">{{ $abroadingPlan->city->name }}</p>
                     @endforeach
                 @elseif (count($favorites))
                     <span style="font-size: 24px">気になる国</span></br>
