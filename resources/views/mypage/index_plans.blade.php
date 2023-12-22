@@ -21,13 +21,14 @@
                         </div>
                         <div style="display: flex">
                             <div style="margin-top: 8px; margin-right: 8px">
-                                <a class="link link-menu" href="{{ route('mypage.edit.plans', $abroadingplan) }}">編集</a>
+                                <a class="link link-menu" style="border: none" href="{{ route('mypage.edit.plans', $abroadingplan) }}"><i class="far fa-edit fa-lg"></i></a>
                             </div>
                             <form action="{{ route('mypage.destroy.plans', $abroadingplan) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" value="{{ $abroadingplan->id }}">
-                                <button type="submit" class="btn btn-outline-danger">削除</button>
+                                <button type="submit" class="btn" style="border: none"><i
+                                    class="fas fa-trash-alt fa-lg"></i></button>
                             </form>
                         </div>
                     </div>

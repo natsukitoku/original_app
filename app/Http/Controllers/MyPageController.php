@@ -27,11 +27,19 @@ class MyPageController extends Controller
 
         $tweets = Tweet::where('user_id', '=', Auth::id())->get();
 
-        $tweetIds = $tweets->pluck('id')->toArray();
+        // $tweetIds = $tweets->pluck('id')->toArray();
 
-        // $unwatchedComments = Comment::whereIn('tweet_id', '=', $tweetIds)->toArray();
+        // $comments = Comment::whereIn('tweet_id', '=', $tweetIds)->toArray();
 
-        dd($unwatchedComments);
+        // dd($comments);
+
+        // $tweetsHaveComments = Tweet::with(['comments'])->whereHas('comments', function($query) {
+        //     $query->where('watched', '0');
+        // })->get();
+
+        // $myTweets = $tweetsHaveComments->where('user_id', '=', Auth::id());
+
+
 
         $favorites = $user->favorites(Country::class)->get();
 
@@ -120,7 +128,7 @@ class MyPageController extends Controller
     // ユーザー名の更新機能
     public function update_username(Request $request)
     {
-        $user =Auth::user();
+        $user = Auth::user();
 
         $user->name = $request->input('name');
         $user->save();

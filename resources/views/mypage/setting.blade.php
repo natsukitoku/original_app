@@ -12,29 +12,30 @@
                 <li>
                     <i class="far fa-user fa-2x" style="margin-right: 8px"></i>
                     <a class="link" href="{{ route('mypage.edit') }}">アカウント情報登録
-                    <i class="fas fa-chevron-right fa-2x" style="float:right; font-size:24px"></i>
-                </a>
+                        <i class="fas fa-chevron-right fa-2x" style="float:right; font-size:24px"></i>
+                    </a>
                 </li>
                 <hr>
                 <li>
                     <i class="fas fa-globe-asia fa-2x" style="margin-right: 8px"></i>
                     <a class="link" href="{{ route('mypage.favorites') }}">気になる国一覧
-                    <i class="fas fa-chevron-right fa-2x" style="float: right;font-size:24px"></i>
-                </a>
+                        <i class="fas fa-chevron-right fa-2x" style="float: right;font-size:24px"></i>
+                    </a>
                 </li>
                 <hr>
                 <li>
                     <i class="fas fa-plane-departure fa-2x" style="margin-right: 8px"></i>
                     <a class="link" href="{{ route('mypage.index.plans') }}">留学予定
-                    <i class="fas fa-chevron-right fa-2x" style="float: right;font-size:24px"></i>
-                </a>
+                        <i class="fas fa-chevron-right fa-2x" style="float: right;font-size:24px"></i>
+                    </a>
                 </li>
                 <hr>
                 <li style="display: flex; justify-content:space-between">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" style="border: none; outline:none; background:transparent" data-bs-toggle="modal" data-bs-target="#logoutModal">                        <i class="fas fa-sign-out-alt fa-2x" style="margin-right:8px"></i>ログアウト</button>
-                    </form>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#logoutModal" style="border: none;padding: 0"><i class="fas fa-sign-out-alt fa-2x"
+                        style="margin-right:8px"></i>
+                        ログアウト
+                    </button>
                     <i class="fas fa-chevron-right fa-2x" style="font-size:24px"></i>
                 </li>
             </ul>
@@ -52,8 +53,11 @@
                     ログアウトしますか？
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger">ログアウト</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">ログアウト</button>
+                    </form>
                 </div>
             </div>
         </div>

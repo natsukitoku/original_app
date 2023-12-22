@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->boolean('watched')->default(0);
+            $table->tinyInteger('watched')->default(0);
         });
     }
 
