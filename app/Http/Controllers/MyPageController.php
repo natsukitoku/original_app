@@ -33,12 +33,13 @@ class MyPageController extends Controller
 
         // dd($comments);
 
-        // $tweetsHaveComments = Tweet::with(['comments'])->whereHas('comments', function($query) {
-        //     $query->where('watched', '0');
-        // })->get();
+        $unWatchedCommentTweet = Tweet::with(['comments' => function ($query) {
+            $query->where('watched', '=', 0);
+        }])->get();
 
-        // $myTweets = $tweetsHaveComments->where('user_id', '=', Auth::id());
+        $nestedIds = $unWatchedCommentTweet->pluck('comments.*.id');
 
+        $unWatchedCommentIds = array_merge(...$nestedIds);
 
 
         $favorites = $user->favorites(Country::class)->get();
@@ -50,7 +51,7 @@ class MyPageController extends Controller
 
 
 
-        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingPlans', 'done_count'));
+        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingPlans', 'done_count', 'unWatchedCommentIds'));
     }
 
     // 設定画面

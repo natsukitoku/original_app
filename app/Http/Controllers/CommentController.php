@@ -31,6 +31,18 @@ class CommentController extends Controller
         return to_route('tweets.index');
     }
 
+    public function update(Request $request, Comment $comment, Tweet $tweet)
+    {
+        $comment->watched = $request->input('watched');
+        $comment->save();
+
+        $unwatched = $comment;
+
+        $tweets = Tweet::latest()->with('user')->get();
+
+        return view('tweets.index', compact('unwatched', 'tweets'));
+    }
+
     public function destroy(Comment $comment)
     {
         $comment->delete();

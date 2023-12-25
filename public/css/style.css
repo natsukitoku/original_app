@@ -44,6 +44,27 @@
     margin-right: auto;
 }
 
+/* mypage */
+.exclamation {
+    position: absolute;
+    bottom: 40px;
+    left: 32px;
+    color: red;
+}
+
+.announce:hover .message {
+    display: inline;
+}
+
+.message {
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 200px;
+}
+
+
 /* follows */
 .follow-btn {
     float: right;
@@ -70,7 +91,11 @@
     color: green;
 }
 
-.hidden-view {
+.unwatched {
+    background-color: lightsalmon;
+}
+
+/* .hidden-view {
     display: none;
 }
 
@@ -84,4 +109,4 @@
 
 .hidden-view.open + .showcomment::before {
     content: "閉じる";
-}
+} */

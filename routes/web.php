@@ -84,5 +84,6 @@ Route::controller(FollowController::class)->group(function () {
 Route::controller(CommentController::class)->group(function () {
     Route::get('/comments/{tweet}/create', 'create')->name('comments.create')->middleware('auth');
     Route::post('/comments/{tweet}', 'store')->name('comments.store');
+    Route::put('/comments/{comment}', 'update')->name('comments.update');
     Route::delete('/comments/{comment}', 'destroy')->name('comments.destroy');
 });

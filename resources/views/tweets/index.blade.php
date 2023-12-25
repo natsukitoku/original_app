@@ -67,37 +67,45 @@
                     </div>
                 @endif
                 @foreach ($tweet->comments as $comment)
-
-                {{-- <div class="hidden-view"> --}}
-                        @if ($comment->user_id == Auth::id())
-                            <div class="card comments card text-bg-light mb-3">
-                                <div class="card-body">
-                                    <div style="display: flex; justify-content: space-between">
-                                        <h6 class="card-title">{{ $comment->user->name }}</h6>
-                                        <form action="{{ route('comments.destroy', $comment) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="hidden" value="{{ $comment->id }}">
-                                            <button type="submit" class="btn"><i
-                                                    class="fas fa-trash-alt fa-lg"></i></button>
-                                        </form>
-                                    </div>
-                                    <p style="font-size: 16px">{{ $comment->content }}</p>
+                    {{-- <div class="hidden-view"> --}}
+                    @if ($comment->user_id == Auth::id())
+                        <div class="card comments card text-bg-light mb-3">
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: space-between">
+                                    <h6 class="card-title">{{ $comment->user->name }}</h6>
+                                    <form action="{{ route('comments.destroy', $comment) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" value="{{ $comment->id }}">
+                                        <button type="submit" class="btn"><i
+                                                class="fas fa-trash-alt fa-lg"></i></button>
+                                    </form>
                                 </div>
+                                <p style="font-size: 16px">{{ $comment->content }}</p>
                             </div>
-                        @else
-                            <div class="card comments card text-bg-light mb-3">
-                                <div class="card-body">
-                                    <div style="display: flex; justify-content: space-between">
-                                        <h6 class="card-title">{{ $comment->user->name }}</h6>
-                                    </div>
-                                    <p style="font-size: 16px">{{ $comment->content }}</p>
+                        </div>
+                    @elseif (in_array($comment->id, $unWatchedCommentIds))
+                        <div class="card comments card text-bg-light mb-3">
+                            <div class="card-body unwatched">
+                                <div style="display: flex; justify-content: space-between">
+                                    <h6 class="card-title">{{ $comment->user->name }}</h6>
                                 </div>
+                                <p style="font-size: 16px">{{ $comment->content }}</p>
                             </div>
-                       @endif
+                        </div>
+                    @else
+                        <div class="card comments card text-bg-light mb-3">
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: space-between">
+                                    <h6 class="card-title">{{ $comment->user->name }}</h6>
+                                </div>
+                                <p style="font-size: 16px">{{ $comment->content }}</p>
+                            </div>
+                        </div>
+                    @endif
 
 
-                {{-- </div> --}}
+                    {{-- </div> --}}
                 @endforeach
                 {{-- <button class="showcomment"></button> --}}
             @endforeach
