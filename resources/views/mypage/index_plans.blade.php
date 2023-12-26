@@ -12,31 +12,43 @@
                 <a class="link link-menu" href="{{ route('mypage.create.plans') }}">新規登録する</a>
             </div>
         </div>
-        @foreach ($abroadingplans as $abroadingplan)
+        @foreach ($abroadingPlans as $abroadingPlan)
             <div class="card">
                 <div class="card-body">
                     <div style="display: flex; justify-content: space-between">
                         <div>
-                            <p style="font-size: 24px">都市名：{{ $abroadingplan->city->name }}</p>
+                            <p style="font-size: 24px">都市名：{{ $abroadingPlan->city->name }}</p>
                         </div>
                         <div style="display: flex">
                             <div style="margin-top: 8px; margin-right: 8px">
-                                <a class="link link-menu" style="border: none" href="{{ route('mypage.edit.plans', $abroadingplan) }}"><i class="far fa-edit fa-lg"></i></a>
+                                <a class="link link-menu" style="border: none"
+                                    href="{{ route('mypage.edit.plans', $abroadingPlan) }}"><i
+                                        class="far fa-edit fa-lg"></i></a>
                             </div>
-                            <form action="{{ route('mypage.destroy.plans', $abroadingplan) }}" method="POST">
+                            <form action="{{ route('mypage.destroy.plans', $abroadingPlan) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" value="{{ $abroadingplan->id }}">
-                                <button type="submit" class="btn" style="border: none"><i
-                                    class="fas fa-trash-alt fa-lg"></i></button>
+                                @if (in_array($abroadingPlan->id, $abroadingPlanIdsInTodos))
+                                    <div class="deletePlan">
+                                        <span class="alert" style="color: red">Todoに紐付けされているため<br>削除できません！</span>
+                                        <button type="submit" class="btn plansBtn" style="border: none" disabled><i
+                                                class="fas fa-trash-alt fa-lg"></i></button>
+                                    </div>
+                                @else
+                                    <div>
+                                        <button type="submit" class="btn" style="border: none"><i
+                                                class="fas fa-trash-alt fa-lg"></i></button>
+                                    </div>
+                                @endif
+                                <input type="hidden" value="{{ $abroadingPlan->id }}">
                             </form>
                         </div>
                     </div>
                     <div>
-                        <p style="font-size: 16px">いつから？：{{ $abroadingplan->from_date }}</p>
+                        <p style="font-size: 16px">いつから？：{{ $abroadingPlan->from_date }}</p>
                     </div>
                     <div>
-                        <p style="font-size: 16px">いつまで？：{{ $abroadingplan->end_date }}</p>
+                        <p style="font-size: 16px">いつまで？：{{ $abroadingPlan->end_date }}</p>
                     </div>
                 </div>
             </div>

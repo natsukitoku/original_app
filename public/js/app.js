@@ -1,3 +1,3 @@
-$('.showcomment').on('click',function(){
-    $('.hidden-view').toggleClass('open');
-});
+// $('.showcomment').on('click',function(){
+//     $('.hidden-view').toggleClass('open');
+// });

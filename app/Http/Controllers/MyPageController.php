@@ -163,9 +163,13 @@ class MyPageController extends Controller
     // 留学先表示
     public function index_abroading_plans()
     {
-        $abroadingplans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
+        $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
 
-        return view('mypage.index_plans', compact('abroadingplans'));
+        $todos = Todo::where('user_id', '=', Auth::id())->get();
+
+        $abroadingPlanIdsInTodos = $todos->pluck('abroading_plan_id')->toArray();
+
+        return view('mypage.index_plans', compact('abroadingPlans','abroadingPlanIdsInTodos'));
     }
 
     public function create_abroading_plans(Country $country)
@@ -221,6 +225,7 @@ class MyPageController extends Controller
 
     public function destroy_abroading_plans(AbroadingPlan $abroadingplan)
     {
+
         $abroadingplan->delete();
 
         return to_route('mypage.index.plans');

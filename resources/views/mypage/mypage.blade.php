@@ -87,7 +87,7 @@
                         <div class="card">
                             <div class="card-body" style="padding: 32px">
                                 <div>
-                                    <h5 style="font-size: 24px">留学先:{{ $todo->abroading_plan->city->name }}</h5>
+                                    <h5 style="font-size: 24px">留学先:{{ $todo->abroadingPlan->city->name }}</h5>
                                 </div>
                                 <div style="margin: 32px">
                                     <p style="margin-right: 8px; font-size: 16px">優先度:{{ $todo->priority_num }}</p>

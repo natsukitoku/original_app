@@ -129,6 +129,7 @@ class TodoController extends Controller
         $todo->priority_num = $request->input('priority_num');
         $todo->content = $request->input('content');
         $todo->done = $request->boolean('done', $todo->done);
+        $todo->duedate = $request->input('duedate');
         $todo->is_public = $request->boolean('is_public');
         $todo->save();
 

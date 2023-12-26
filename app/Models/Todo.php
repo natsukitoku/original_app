@@ -15,7 +15,7 @@ class Todo extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function abroading_plan()
+    public function abroadingPlan()
     {
         return $this->belongsTo(AbroadingPlan::class);
     }
@@ -24,7 +24,23 @@ class Todo extends Model
     {
         $now = Carbon::now();
         $duedate = Carbon::parse($this->duedate);
-        
+
         return $duedate->subWeek()->lt($now);
+    }
+
+    public function isDuedate()
+    {
+        $now = Carbon::now();
+        $duedate = Carbon::parse($this->duedate);
+
+        return $duedate->isToday();
+    }
+
+    public function isOverDuedate()
+    {
+        $now = Carbon::now();
+        $duedate = Carbon::parse($this->duedate);
+
+        return $duedate->lt($now);
     }
 }
