@@ -27,12 +27,6 @@ class MyPageController extends Controller
 
         $tweets = Tweet::where('user_id', '=', Auth::id())->get();
 
-        // $tweetIds = $tweets->pluck('id')->toArray();
-
-        // $comments = Comment::whereIn('tweet_id', '=', $tweetIds)->toArray();
-
-        // dd($comments);
-
         $unWatchedCommentTweet = Tweet::with(['comments' => function ($query) {
             $query->where('watched', '=', 0);
         }])->get();
@@ -40,6 +34,8 @@ class MyPageController extends Controller
         $nestedIds = $unWatchedCommentTweet->pluck('comments.*.id');
 
         $unWatchedCommentIds = array_merge(...$nestedIds);
+
+        
 
 
         $favorites = $user->favorites(Country::class)->get();

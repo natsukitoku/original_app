@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Todo;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,9 +22,10 @@ class TweetController extends Controller
     {
         $tweets = Tweet::latest()->with('user')->get();
 
-        $unWatchedCommentTweet = Tweet::with(['comments' => function($query) {
+        $unWatchedCommentTweet = Tweet::where('user_id', '=', Auth::id())->with(['comments' => function ($query) {
             $query->where('watched', '=', 0);
         }])->get();
+
 
         $nestedIds = $unWatchedCommentTweet->pluck('comments.*.id');
 
@@ -31,6 +33,8 @@ class TweetController extends Controller
 
         // 未読コメントを既読に一括更新
         Comment::whereIn('id', $unWatchedCommentIds)->update(['watched' => 1]);
+
+        
 
         return view('tweets.index', compact('tweets', 'unWatchedCommentIds'));
     }

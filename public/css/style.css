@@ -2,6 +2,12 @@
     margin:48px;
 }
 
+.logo {
+    height: 72px;
+    width: 88px;
+    margin-left: 8px;
+}
+
 .back {
     text-decoration: none;
     color: black;
@@ -59,8 +65,8 @@
 .message {
     display: none;
     position: absolute;
-    bottom: 40px;
-    left: 40px;
+    bottom: 56px;
+    left: -24px;
     width: 200px;
 }
 

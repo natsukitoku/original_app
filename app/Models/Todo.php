@@ -30,7 +30,7 @@ class Todo extends Model
 
     public function isDuedate()
     {
-        $now = Carbon::now();
+        // $now = Carbon::now();
         $duedate = Carbon::parse($this->duedate);
 
         return $duedate->isToday();

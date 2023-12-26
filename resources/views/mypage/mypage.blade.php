@@ -22,11 +22,14 @@
                     @if (count($unWatchedCommentIds))
                         <i class="fas fa-exclamation fa-2x exclamation"></i>
                         <a href="{{ route('tweets.index') }}"><i class="far fa-comments fa-2x" style="color: black"></i>
-                            <span class="message" style="color: black">未読メッセージがあります！</span></a>
+                            <span class="message" style="color: black">未読メッセージが<br>あります</span></a>
                     @else
                         <a class="announce" href="{{ route('tweets.index') }}"><i class="far fa-comments fa-2x"
-                                style="color: black"></i><span class="message" style="color: black">未読メッセージはありません</span></a>
+                                style="color: black"></i><span class="message" style="color: black">未読メッセージは<br>ありません</span></a>
                     @endif
+                </div>
+                <div style="margin-left: 24px; margin-top:8px;>
+                    <a href="{{route('todos.index')}}"><i class="far fa-calendar-check fa-2x"></i></a>
                 </div>
             </div>
             <ul style="display: flex; justify-content: space-between; list-style:none">
