@@ -9,6 +9,7 @@ use App\Models\AbroadingPlan;
 use App\Models\Comment;
 use App\Models\Todo;
 use App\Models\Tweet;
+use App\Utils\TodoUtils;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class MyPageController extends Controller
 
         $unWatchedCommentIds = array_merge(...$nestedIds);
 
-        
+        $hasSoonDuedate = TodoUtils::hasSoonDuedate($todos);
 
 
         $favorites = $user->favorites(Country::class)->get();
@@ -47,7 +48,7 @@ class MyPageController extends Controller
 
 
 
-        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingPlans', 'done_count', 'unWatchedCommentIds'));
+        return view('mypage.mypage', compact('user', 'todos', 'tweets', 'favorites', 'abroadingPlans', 'done_count', 'unWatchedCommentIds', 'hasSoonDuedate'));
     }
 
     // 設定画面

@@ -25,109 +25,116 @@
                             <span class="message" style="color: black">未読メッセージが<br>あります</span></a>
                     @else
                         <a class="announce" href="{{ route('tweets.index') }}"><i class="far fa-comments fa-2x"
-                                style="color: black"></i><span class="message" style="color: black">未読メッセージは<br>ありません</span></a>
+                                style="color: black"></i><span class="message"
+                                style="color: black">未読メッセージは<br>ありません</span></a>
                     @endif
                 </div>
-                <div style="margin-left: 24px; margin-top:8px;>
-                    <a href="{{route('todos.index')}}"><i class="far fa-calendar-check fa-2x"></i></a>
-                </div>
-            </div>
-            <ul style="display: flex; justify-content: space-between; list-style:none">
-                <li style="margin: 16px">
-                    <span style="font-size: 24px">留学
-                        @if (count($abroadingPlans))
-                            @php
-                                $latestAbroadingPlan = $abroadingPlans->sortBy('from_date')->first();
-
-                                $fromDate = $latestAbroadingPlan->from_date;
-
-                                $date = new DateTime($fromDate);
-
-                                $now = new DateTime('now');
-
-                                $diff = date_diff($now, $date);
-                            @endphp
-                            @if ($diff->y !== 0)
-                                まで残り</br>{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日
-                            @elseif ($diff->m !== 0)
-                                まで残り</br>{{ $diff->m }}月{{ $diff->d }}日
-                            @elseif($diff->invert == 0)
-                                まで残り</br>{{ $diff->d }}日
-                            @elseif($diff->invert == 1)
-                                </br>{{ $diff->d }}日
-                            @endif
-                        @else
-                            </br>未定
-                        @endif
-                    </span>
-                </li>
-                <li style="margin: 16px">
-                    @if (count($abroadingPlans))
-                        <span style="font-size: 24px">留学予定</span>
-                        @foreach ($abroadingPlans as $abroadingPlan)
-                            <p style="font-size: 24px; line-height:1em; margin-top: 8px">{{ $abroadingPlan->city->name }}
-                            </p>
-                        @endforeach
-                    @elseif (count($favorites))
-                        <span style="font-size: 24px">気になる国</span></br>
-                        @foreach ($favorites as $fav)
-                            <p style="font-size: 24px">{{ App\Models\Country::find($fav->favoriteable_id)->name }}</p>
-                        @endforeach
+                <div style="margin-left: 24px; margin-top:8px">
+                    @if ($hasSoonDuedate)
+                        <i class="fas fa-exclamation fa-2x exclamation"></i>
+                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x"></i></a>
                     @else
-                        <span>留学</br>予定なし</span>
+                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x"></i></a>
                     @endif
-                </li>
-                <li style="margin: 16px">
-                    <span style="font-size: 24px">タスク完了数</span>
-                    <p style="font-size: 24px; text-align: center">{{ $done_count }}</p>
-                </li>
-            </ul>
-            <hr>
-            <div>
-                <h4>公開中のTodo一覧</h4>
-                @if (count($todos))
-                    @foreach ($todos as $todo)
-                        <div class="card">
-                            <div class="card-body" style="padding: 32px">
-                                <div>
-                                    <h5 style="font-size: 24px">留学先:{{ $todo->abroadingPlan->city->name }}</h5>
-                                </div>
-                                <div style="margin: 32px">
-                                    <p style="margin-right: 8px; font-size: 16px">優先度:{{ $todo->priority_num }}</p>
-                                    <p style="font-size: 16px">期限:{{ $todo->duedate }}</p>
-                                </div>
-                                <div style="margin: 32px">
-                                    <h4>{{ $todo->content }}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <h6>現在公開中のTodoはありません。</h6>
-                @endif
-            </div>
-            <hr>
-            <div style="margin-top: 16px">
-                <h4>つぶやき一覧</h4>
-                @if (count($tweets))
-                    @foreach ($tweets as $tweet)
-                        <div class="card">
-                            <div class="card-body">
-                                <h5>{{ $tweet->user->name }}</h5>
-                                <div style="margin: 32px">
-                                    <h5>{{ $tweet->content }}</h5>
-                                </div>
-                                <div style="float: right">
-                                    <a class="link link-menu comment-link"
-                                        href="{{ route('comments.create', $tweet) }}">コメントする</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <h6>つぶやきはありません。</h6>
-                @endif
+                </div>
             </div>
         </div>
+        <ul style="display: flex; justify-content: space-between; list-style:none">
+            <li style="margin: 16px">
+                <span style="font-size: 24px">留学
+                    @if (count($abroadingPlans))
+                        @php
+                            $latestAbroadingPlan = $abroadingPlans->sortBy('from_date')->first();
+
+                            $fromDate = $latestAbroadingPlan->from_date;
+
+                            $date = new DateTime($fromDate);
+
+                            $now = new DateTime('now');
+
+                            $diff = date_diff($now, $date);
+                        @endphp
+                        @if ($diff->y !== 0)
+                            まで残り</br>{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日
+                        @elseif ($diff->m !== 0)
+                            まで残り</br>{{ $diff->m }}月{{ $diff->d }}日
+                        @elseif($diff->invert == 0)
+                            まで残り</br>{{ $diff->d }}日
+                        @elseif($diff->invert == 1)
+                            </br>{{ $diff->d }}日
+                        @endif
+                    @else
+                        </br>未定
+                    @endif
+                </span>
+            </li>
+            <li style="margin: 16px">
+                @if (count($abroadingPlans))
+                    <span style="font-size: 24px">留学予定</span>
+                    @foreach ($abroadingPlans as $abroadingPlan)
+                        <p style="font-size: 24px; line-height:1em; margin-top: 8px">{{ $abroadingPlan->city->name }}
+                        </p>
+                    @endforeach
+                @elseif (count($favorites))
+                    <span style="font-size: 24px">気になる国</span></br>
+                    @foreach ($favorites as $fav)
+                        <p style="font-size: 24px">{{ App\Models\Country::find($fav->favoriteable_id)->name }}</p>
+                    @endforeach
+                @else
+                    <span>留学</br>予定なし</span>
+                @endif
+            </li>
+            <li style="margin: 16px">
+                <span style="font-size: 24px">タスク完了数</span>
+                <p style="font-size: 24px; text-align: center">{{ $done_count }}</p>
+            </li>
+        </ul>
+        <hr>
+        <div>
+            <h4>公開中のTodo一覧</h4>
+            @if (count($todos))
+                @foreach ($todos as $todo)
+                    <div class="card">
+                        <div class="card-body" style="padding: 32px">
+                            <div>
+                                <h5 style="font-size: 24px">留学先:{{ $todo->abroadingPlan->city->name }}</h5>
+                            </div>
+                            <div style="margin: 32px">
+                                <p style="margin-right: 8px; font-size: 16px">優先度:{{ $todo->priority_num }}</p>
+                                <p style="font-size: 16px">期限:{{ $todo->duedate }}</p>
+                            </div>
+                            <div style="margin: 32px">
+                                <h4>{{ $todo->content }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <h6>現在公開中のTodoはありません。</h6>
+            @endif
+        </div>
+        <hr>
+        <div style="margin-top: 16px">
+            <h4>つぶやき一覧</h4>
+            @if (count($tweets))
+                @foreach ($tweets as $tweet)
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>{{ $tweet->user->name }}</h5>
+                            <div style="margin: 32px">
+                                <h5>{{ $tweet->content }}</h5>
+                            </div>
+                            <div style="float: right">
+                                <a class="link link-menu comment-link"
+                                    href="{{ route('comments.create', $tweet) }}">コメントする</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <h6>つぶやきはありません。</h6>
+            @endif
+        </div>
+    </div>
     </div>
 @endsection
