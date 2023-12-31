@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top: 40px">
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <h3 class="mt-4 mb-3">ログイン</h3>
@@ -64,6 +64,9 @@
                         href="{{ route('register') }}">
                         新規登録
                     </a>
+                </div>
+                <div style="margin-top: 16px">
+                    <a style="text-decoration: none; color:black" href="{{route('top.index')}}">&lt;TOPに戻る</a>
                 </div>
             </div>
         </div>

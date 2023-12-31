@@ -29,12 +29,17 @@
                                 style="color: black">未読メッセージは<br>ありません</span></a>
                     @endif
                 </div>
-                <div style="margin-left: 24px; margin-top:8px">
+                <div class="announce2" style="margin-left: 24px; margin-top:8px; position: relative;">
                     @if ($hasSoonDuedate)
-                        <i class="fas fa-exclamation fa-2x exclamation"></i>
-                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x"></i></a>
+                        <i class="fas fa-exclamation fa-2x exclamation2"></i>
+                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x"
+                                style="color: black"></i>
+                            <span class="message2" style="color: black">期限が近いTodoが<br>あります</span></a>
                     @else
-                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x"></i></a>
+                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x" style="color: black"></i>
+                            <span class="message2"
+                                style="color: black">期限が近いTodoは<br>ありません</span>
+                        </a>
                     @endif
                 </div>
             </div>

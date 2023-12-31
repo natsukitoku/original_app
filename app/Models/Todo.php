@@ -22,25 +22,36 @@ class Todo extends Model
 
     public function isSoonDuedate()
     {
-        $now = Carbon::now();
-        $duedate = Carbon::parse($this->duedate);
+        if ($this->done !== 1) {
+            $now = Carbon::now();
+            $duedate = Carbon::parse($this->duedate);
 
-        return $duedate->subWeek()->lt($now);
+            return $duedate->subWeek()->lt($now);
+        }
+
+        return false;
     }
 
     public function isDuedate()
     {
-        // $now = Carbon::now();
-        $duedate = Carbon::parse($this->duedate);
+        if ($this->done !== 1) {
+            $duedate = Carbon::parse($this->duedate);
 
-        return $duedate->isToday();
+            return $duedate->isToday();
+        }
+
+        return false;
     }
 
     public function isOverDuedate()
     {
-        $now = Carbon::now();
-        $duedate = Carbon::parse($this->duedate);
+        if ($this->done !== 1) {
+            $now = Carbon::now();
+            $duedate = Carbon::parse($this->duedate);
 
-        return $duedate->lt($now);
+            return $duedate->lt($now);
+        }
+
+        return false;
     }
 }

@@ -1,5 +1,62 @@
 .all {
-    margin:48px;
+    margin-top:48px;
+    margin-right: 48px;
+    margin-left: 48px;
+    margin-bottom: 0px;
+}
+
+/* top */
+.people {
+    width: 100%;
+    height: 152px;
+}
+
+.header {
+    margin-top: 64px;
+    background-color: white;
+    text-align: center;
+}
+
+.title {
+    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+    font-size: 48px;
+}
+
+.sub-title {
+    margin-bottom: 0;
+}
+
+.hukidashi2 {
+    width: 16px;
+    height: 16px;
+}
+
+.worries {
+    margin-right: 16px;
+    width: 168px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.people-img {
+    width: 88px;
+    height: 88px;
+}
+
+.hukidashi {
+    width: 168px;
+    height: 16px;
+}
+
+
+.title2 {
+    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+}
+
+
+
+.register-button {
+    border-radius: 8px;
 }
 
 .logo {
@@ -58,11 +115,31 @@
     color: red;
 }
 
+.exclamation2 {
+    color: red;
+    position: absolute;
+    left: 32px;
+    bottom: 40px;
+}
+
+.announce2:hover .message2 {
+    display: inline;
+}
+
+
 .announce:hover .message {
     display: inline;
 }
 
 .message {
+    display: none;
+    position: absolute;
+    bottom: 56px;
+    left: -24px;
+    width: 200px;
+}
+
+.message2 {
     display: none;
     position: absolute;
     bottom: 56px;

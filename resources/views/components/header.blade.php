@@ -1,7 +1,7 @@
 <header class="m-5">
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-warning-subtle">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url('/') }}" style="font-size: 32px"><img class="logo"
+            <a class="navbar-brand" href="{{ url('/home') }}" style="font-size: 32px"><img class="logo"
                     src="{{ asset('img/logo.png') }}" alt="ワーホリンク"></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

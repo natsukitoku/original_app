@@ -8,6 +8,7 @@ use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,16 +22,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
 
-Route::resource('home', HomeController::class)->middleware(['auth', 'verified']);
+Route::get('/', [TopController::class, 'index'])->name('top.index');
+
+// Route::resource('home', HomeController::class)->middleware(['auth', 'verified']);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
+
+
 Auth::routes(['verify' => true]);
 
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class])->name('logout');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::controller(MyPageController::class)->group(function () {
     Route::get('/mypage', 'mypage')->name('mypage')->middleware('auth');
