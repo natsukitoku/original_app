@@ -67,9 +67,9 @@
 
                     @endphp
                     @if ($diff->y !== 0)
-                        まで残り{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日!
+                        まで残り{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
                     @elseif ($diff->m !== 0)
-                        まで残り{{ $diff->m }}月{{ $diff->d }}日!
+                        まで残り{{ $diff->m }}ヶ月{{ $diff->d }}日!
                     @elseif($diff->invert == 0)
                         まで残り{{ $diff->d }}日!
                     @elseif($diff->invert == 1)
