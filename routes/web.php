@@ -27,7 +27,7 @@ Route::get('/', [TopController::class, 'index'])->name('top.index');
 
 // Route::resource('home', HomeController::class)->middleware(['auth', 'verified']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Auth::routes(['verify' => true]);
