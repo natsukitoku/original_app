@@ -54,16 +54,25 @@
         </style>
         <div class="container" style="margin-top: 48px; text-align:center">
             <h1>Hello! {{ $user->name }}さん!</h1>
-            @if ($abroadingPlan)
+            @if ($abroadingPlans)
                 <h2>留学
                     @php
+
+                        $abroadingPlan = $abroadingPlans->first();
+
                         $from_date = $abroadingPlan->from_date;
 
-                        $date = new DateTime($from_date);
+                        $end_date = $abroadingPlan->end_date;
+
+                        $endDate = new DateTime($end_date);
+
+                        $fromDate = new DateTime($from_date);
 
                         $now = new DateTime('now');
 
-                        $diff = date_diff($now, $date);
+                        $diff = date_diff($now, $fromDate);
+
+                        $endDiff = date_diff($now, $endDate);
 
                     @endphp
                     @if ($diff->y !== 0)
@@ -72,6 +81,8 @@
                         まで残り{{ $diff->m }}ヶ月{{ $diff->d }}日!
                     @elseif($diff->invert == 0)
                         まで残り{{ $diff->d }}日!
+                    @elseif($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
+                        終了です！</br>お疲れ様でした！
                     @elseif($diff->invert == 1)
                         {{ $diff->d }}日!
                     @endif

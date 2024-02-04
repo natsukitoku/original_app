@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\User;
 use App\Models\VisaInformation;
 use App\Models\Todo;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,9 +36,15 @@ class HomeController extends Controller
         $countries = Country::all();
 
 
-        $abroadingPlan = AbroadingPlan::where('user_id', '=', Auth::id())->orderBY('from_date', 'ASC')->first();
+        // $now = new DateTime('now');
+
+        $today = Carbon::today();
 
 
-        return view('home', compact('countries', 'user', 'abroadingPlan'));
+        $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->where('end_date', '>=', $today)->orderBY('end_date', 'ASC')->get();
+
+
+
+        return view('home', compact('countries', 'user', 'abroadingPlans'));
     }
 }

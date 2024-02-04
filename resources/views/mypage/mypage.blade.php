@@ -36,9 +36,9 @@
                                 style="color: black"></i>
                             <span class="message2" style="color: black">期限が近いTodoが<br>あります</span></a>
                     @else
-                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x" style="color: black"></i>
-                            <span class="message2"
-                                style="color: black">期限が近いTodoは<br>ありません</span>
+                        <a href="{{ route('todos.index') }}"><i class="far fa-calendar-check fa-2x"
+                                style="color: black"></i>
+                            <span class="message2" style="color: black">期限が近いTodoは<br>ありません</span>
                         </a>
                     @endif
                 </div>
@@ -48,28 +48,39 @@
             <li style="margin: 16px">
                 <span style="font-size: 24px">留学
                     @if (count($abroadingPlans))
-                        @php
-                            $latestAbroadingPlan = $abroadingPlans->sortBy('from_date')->first();
+                        <h2>留学
+                            @php
 
-                            $fromDate = $latestAbroadingPlan->from_date;
+                                $abroadingPlan = $abroadingPlans->first();
 
-                            $date = new DateTime($fromDate);
+                                $from_date = $abroadingPlan->from_date;
 
-                            $now = new DateTime('now');
+                                $end_date = $abroadingPlan->end_date;
 
-                            $diff = date_diff($now, $date);
-                        @endphp
-                        @if ($diff->y !== 0)
-                            まで残り</br>{{ $diff->y }}年{{ $diff->m }}月{{ $diff->d }}日
-                        @elseif ($diff->m !== 0)
-                            まで残り</br>{{ $diff->m }}月{{ $diff->d }}日
-                        @elseif($diff->invert == 0)
-                            まで残り</br>{{ $diff->d }}日
-                        @elseif($diff->invert == 1)
-                            </br>{{ $diff->d }}日
-                        @endif
-                    @else
-                        </br>未定
+                                $endDate = new DateTime($end_date);
+
+                                $fromDate = new DateTime($from_date);
+
+                                $now = new DateTime('now');
+
+                                $diff = date_diff($now, $fromDate);
+
+                                $endDiff = date_diff($now, $endDate);
+
+                            @endphp
+                            @if ($diff->y !== 0)
+                                まで残り{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                            @elseif ($diff->m !== 0)
+                                まで残り{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                            @elseif($diff->invert == 0)
+                                まで残り{{ $diff->d }}日!
+                            @elseif($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
+                                終了です！
+                            @elseif($diff->invert == 1)
+                                {{ $diff->d }}日!
+                            @endif
+                        @else
+                            </br>未定
                     @endif
                 </span>
             </li>

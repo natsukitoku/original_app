@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Todo;
 use App\Models\Tweet;
 use App\Utils\TodoUtils;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -41,7 +42,10 @@ class MyPageController extends Controller
 
         $favorites = $user->favorites(Country::class)->get();
 
-        $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->get();
+        $today = Carbon::today();
+
+
+        $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->where('end_date', '>=', $today)->orderBY('end_date', 'ASC')->get();
 
 
         $done_count = Todo::where('user_id', '=', Auth::id())->where('done', '=', '1')->count();
@@ -81,7 +85,7 @@ class MyPageController extends Controller
             return to_route('mypage.edit_password');
         }
 
-        return to_route('mypage.edi');
+        return to_route('mypage.edit');
     }
 
 
@@ -166,7 +170,7 @@ class MyPageController extends Controller
 
         $abroadingPlanIdsInTodos = $todos->pluck('abroading_plan_id')->toArray();
 
-        return view('mypage.index_plans', compact('abroadingPlans','abroadingPlanIdsInTodos'));
+        return view('mypage.index_plans', compact('abroadingPlans', 'abroadingPlanIdsInTodos'));
     }
 
     public function create_abroading_plans(Country $country)
