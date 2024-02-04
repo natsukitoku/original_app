@@ -48,39 +48,38 @@
             <li style="margin: 16px">
                 <span style="font-size: 24px">留学
                     @if (count($abroadingPlans))
-                        <h2>留学
-                            @php
+                        @php
 
-                                $abroadingPlan = $abroadingPlans->first();
+                            $abroadingPlan = $abroadingPlans->first();
 
-                                $from_date = $abroadingPlan->from_date;
+                            $from_date = $abroadingPlan->from_date;
 
-                                $end_date = $abroadingPlan->end_date;
+                            $end_date = $abroadingPlan->end_date;
 
-                                $endDate = new DateTime($end_date);
+                            $endDate = new DateTime($end_date);
 
-                                $fromDate = new DateTime($from_date);
+                            $fromDate = new DateTime($from_date);
 
-                                $now = new DateTime('now');
+                            $now = new DateTime('now');
 
-                                $diff = date_diff($now, $fromDate);
+                            $diff = date_diff($now, $fromDate);
 
-                                $endDiff = date_diff($now, $endDate);
+                            $endDiff = date_diff($now, $endDate);
 
-                            @endphp
-                            @if ($diff->y !== 0)
-                                まで残り{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
-                            @elseif ($diff->m !== 0)
-                                まで残り{{ $diff->m }}ヶ月{{ $diff->d }}日!
-                            @elseif($diff->invert == 0)
-                                まで残り{{ $diff->d }}日!
-                            @elseif($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
-                                終了です！
-                            @elseif($diff->invert == 1)
-                                {{ $diff->d }}日!
-                            @endif
-                        @else
-                            </br>未定
+                        @endphp
+                        @if ($diff->y !== 0)
+                            まで残り</br>{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                        @elseif ($diff->m !== 0)
+                            まで残り</br>{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                        @elseif($diff->invert == 0)
+                            まで残り</br>{{ $diff->d }}日!
+                        @elseif($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
+                            </br>終了です！
+                        @elseif($diff->invert == 1)
+                            </br>{{ $diff->d }}日!
+                        @endif
+                    @else
+                        </br>未定
                     @endif
                 </span>
             </li>
