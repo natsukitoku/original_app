@@ -84,4 +84,29 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id');
     }
+
+    public function founders()
+    {
+        return $this->belongsToMany(User::class, 'chatRooms', 'friend_id', 'founder_id');
+    }
+
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'chatRooms', 'founder_id', 'friend_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function senders()
+    {
+        return $this->belongsToMany(User::class, 'chats', 'receiver_id', 'sender_id');
+    }
+
+    public function receivers()
+    {
+        return $this->belongsToMany(User::class, 'chats', 'sender_id', 'receiver_id');
+    }
 }

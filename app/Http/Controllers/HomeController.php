@@ -43,8 +43,8 @@ class HomeController extends Controller
 
         $abroadingPlans = AbroadingPlan::where('user_id', '=', Auth::id())->where('end_date', '>=', $today)->orderBY('end_date', 'ASC')->get();
 
+        $doneAbroadingPlan = AbroadingPlan::where('user_id', '=', Auth::id())->where('end_date', '<', $today)->where('reviewed', '=', '0')->first();
 
-
-        return view('home', compact('countries', 'user', 'abroadingPlans'));
+        return view('home', compact('countries', 'user', 'abroadingPlans', 'doneAbroadingPlan'));
     }
 }

@@ -46,7 +46,7 @@
         </div>
         <ul style="display: flex; justify-content: space-between; list-style:none">
             <li style="margin: 16px">
-                <span style="font-size: 24px">留学
+                <span style="font-size: 24px">留学</br>
                     @if (count($abroadingPlans))
                         @php
 
@@ -67,16 +67,20 @@
                             $endDiff = date_diff($now, $endDate);
 
                         @endphp
-                        @if ($diff->y !== 0)
-                            まで残り</br>{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                        @if ($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
+                            終了です！</br>お疲れ様でした！
+                        @elseif ($diff->invert == 1 && $diff->y !== 0)
+                            {{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                        @elseif ($diff->invert == 1 && $diff->m !== 0)
+                            {{ $diff->m }}ヶ月{{ $diff->d }}日!
+                        @elseif ($diff->invert == 1)
+                            {{ $diff->d }}日!
+                        @elseif ($diff->y !== 0)
+                            まで残り{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
                         @elseif ($diff->m !== 0)
-                            まで残り</br>{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                            まで残り{{ $diff->m }}ヶ月{{ $diff->d }}日!
                         @elseif($diff->invert == 0)
-                            まで残り</br>{{ $diff->d }}日!
-                        @elseif($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
-                            </br>終了です！
-                        @elseif($diff->invert == 1)
-                            </br>{{ $diff->d }}日!
+                            まで残り{{ $diff->d }}日!
                         @endif
                     @else
                         </br>未定

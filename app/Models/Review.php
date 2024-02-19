@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AbroadingPlan extends Model
+class Review extends Model
 {
     use HasFactory;
 
@@ -14,18 +14,13 @@ class AbroadingPlan extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function abroadingplan()
+    {
+        return $this->belongsTo(AbroadingPlan::class);
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class);
-    }
-
-    public function todos()
-    {
-        return $this->hasMany(Todo::class);
-    }
-
-    public function reviews()
-    {
-        $this->hasMany(Review::class);
     }
 }

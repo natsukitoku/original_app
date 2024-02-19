@@ -14,6 +14,9 @@
                     <i class="fas fa-user-plus"></i>
                 </a>
             </div>
+            <div>
+                <a href="{{route('chats.index')}}">チャットルーム一覧</a>
+            </div>
         </div>
         <div style="margin: 24px">
             @foreach ($tweets as $tweet)

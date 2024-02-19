@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\AbroadingPlan;
 use App\Models\Comment;
+use App\Models\Review;
 use App\Models\Todo;
 use App\Models\Tweet;
 use App\Utils\TodoUtils;
@@ -231,4 +232,6 @@ class MyPageController extends Controller
 
         return to_route('mypage.index.plans');
     }
+
+
 }

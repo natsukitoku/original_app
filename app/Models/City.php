@@ -18,4 +18,9 @@ class City extends Model
     {
         return $this->hasMany(AbroadingPlan::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

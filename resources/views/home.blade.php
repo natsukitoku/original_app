@@ -74,23 +74,39 @@
 
                         $endDiff = date_diff($now, $endDate);
 
+
+
                     @endphp
-                    @if ($diff->y !== 0)
+                    @if ($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
+                        終了です！</br>お疲れ様でした！
+                    @elseif ($diff->invert == 1 && $diff->y !== 0)
+                        {{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
+                    @elseif ($diff->invert == 1 && $diff->m !== 0)
+                        {{ $diff->m }}ヶ月{{ $diff->d }}日!
+                    @elseif ($diff->invert == 1)
+                        {{ $diff->d }}日!
+                    @elseif ($diff->y !== 0)
                         まで残り{{ $diff->y }}年{{ $diff->m }}ヶ月{{ $diff->d }}日!
                     @elseif ($diff->m !== 0)
                         まで残り{{ $diff->m }}ヶ月{{ $diff->d }}日!
                     @elseif($diff->invert == 0)
                         まで残り{{ $diff->d }}日!
-                    @elseif($endDiff->y == 0 && $endDiff->m == 0 && $endDiff->d == 0 && $endDiff->invert == 1)
-                        終了です！</br>お疲れ様でした！
-                    @elseif($diff->invert == 1)
-                        {{ $diff->d }}日!
                     @endif
                 </h2>
+            @endif
+            @if (isset($doneAbroadingPlan))
+                <h4>留学先レビュー登録にご協力お願いいたします！</h4>
+                <a style="font-size: 16px" href="{{ route('reviews.create') }}">レビューを作成</a>
             @endif
         </div>
         <div id="map"></div>
         <div class="all" style="margin-top: 560px">
+            <div style="margin-bottom: 16px">
+                <div style="text-align: right">
+                    <h5 style="margin: 0px;padding:0px">先輩たちの声を参考にしてみよう！</h5>
+                    <a style="font-size: 16px" href="{{ route('reviews.index') }}">留学先レビューはこちら</a>
+                </div>
+            </div>
             <h2>ワーホリ協定国一覧</h2>
             <table class="table table-sm" style="margin-top:32px">
                 <tr style="font-size: 16px">
@@ -120,54 +136,54 @@
                     </tr>
                 @endforeach
             </table>
-        </div>
-        <script>
-            // セキュリティの観点でトークンはenvファイルに保存して、値を参照してくる
-            mapboxgl.accessToken = @json(env('MAPBOX_API_KEY'));
-            const map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [138.4477649, 35.5042661],
-                zoom: 0.5
-            });
 
-            @php
-                // お気に入り登録用のURLの元となるURL準備
-                // %ID%としているのは、この時点ではcountry_idが分からないので、一旦%ID%とおいて
-                // 後でJSでこの%ID%を実際のcountryのidに置き換える用の一時保存用
-                // favoriteUrlBaseには「http://localhost/country/%ID%/favorite」の様な値が入る
-                $favoriteUrlBase = route('countries.favorites', '%ID%');
-            @endphp
-
-            // JSへ↑のURLの情報とcountryの情報を渡す
-            const countries = @json($countries);
-            const favoriteUrlBase = @json($favoriteUrlBase);
-
-            map.on('load', () => {
-                // countryの件数分ループして、markerの登録に必要な情報を組み立てていく
-                const features = countries.map(counrty => {
-                    return {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [counrty.lon, counrty.lat]
-                        },
-                        properties: {
-                            title: counrty.name,
-                            // ここの処理で、お気に入りボタンを押した時の実際のリクエストするURLを生成
-                            favoriteUrl: favoriteUrlBase.replace('%ID%', counrty.id)
-                        }
-                    }
+            <script>
+                // セキュリティの観点でトークンはenvファイルに保存して、値を参照してくる
+                mapboxgl.accessToken = @json(env('MAPBOX_API_KEY'));
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [138.4477649, 35.5042661],
+                    zoom: 0.5
                 });
 
-                // 国ごとにmarkerの要素を作成し、地図に追加していく
-                for (const feature of features) {
-                    new mapboxgl.Marker().setLngLat(feature.geometry.coordinates).setPopup(
-                        new mapboxgl.Popup({
-                            offset: 25
-                        })
-                        .setHTML(
-                            `
+                @php
+                    // お気に入り登録用のURLの元となるURL準備
+                    // %ID%としているのは、この時点ではcountry_idが分からないので、一旦%ID%とおいて
+                    // 後でJSでこの%ID%を実際のcountryのidに置き換える用の一時保存用
+                    // favoriteUrlBaseには「http://localhost/country/%ID%/favorite」の様な値が入る
+                    $favoriteUrlBase = route('countries.favorites', '%ID%');
+                @endphp
+
+                // JSへ↑のURLの情報とcountryの情報を渡す
+                const countries = @json($countries);
+                const favoriteUrlBase = @json($favoriteUrlBase);
+
+                map.on('load', () => {
+                    // countryの件数分ループして、markerの登録に必要な情報を組み立てていく
+                    const features = countries.map(counrty => {
+                        return {
+                            type: 'Feature',
+                            geometry: {
+                                type: 'Point',
+                                coordinates: [counrty.lon, counrty.lat]
+                            },
+                            properties: {
+                                title: counrty.name,
+                                // ここの処理で、お気に入りボタンを押した時の実際のリクエストするURLを生成
+                                favoriteUrl: favoriteUrlBase.replace('%ID%', counrty.id)
+                            }
+                        }
+                    });
+
+                    // 国ごとにmarkerの要素を作成し、地図に追加していく
+                    for (const feature of features) {
+                        new mapboxgl.Marker().setLngLat(feature.geometry.coordinates).setPopup(
+                            new mapboxgl.Popup({
+                                offset: 25
+                            })
+                            .setHTML(
+                                `
                             <a href=${feature.properties.favoriteUrl}>
                                 ${feature.properties.title}
                                 <svg class='favorite' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -175,12 +191,12 @@
                                 </svg>
                             </a>
                             `
-                            // ↑は吹き出しの要素を作っている svgタグはハートマークを描画するための指定
-                        )
-                    ).addTo(map);
-                }
-            });
-        </script>
+                                // ↑は吹き出しの要素を作っている svgタグはハートマークを描画するための指定
+                            )
+                        ).addTo(map);
+                    }
+                });
+            </script>
 
 
     </body>

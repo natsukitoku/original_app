@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\MyPageController;
@@ -8,7 +9,9 @@ use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TopController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,4 +92,19 @@ Route::controller(CommentController::class)->group(function () {
     Route::post('/comments/{tweet}', 'store')->name('comments.store');
     Route::put('/comments/{comment}', 'update')->name('comments.update');
     Route::delete('/comments/{comment}', 'destroy')->name('comments.destroy');
+});
+
+Route::controller(ChatController::class)->group(function () {
+    Route::get('/chats', 'index')->name('chats.index');
+    Route::get('/chats/create', 'create')->name('chats.create');
+    Route::post('/chats', 'chatRooms_store')->name('chatRooms.store');
+    Route::get('/chats/{chatRoom}/show', 'show')->name('chats.show');
+});
+
+Route::controller(ReviewController::class)->group(function () {
+    Route::get('/reviews', 'index')->name('reviews.index');
+    Route::get('/reviews/create', 'create')->name('reviews.create');
+    Route::post('/reviews/{abroadingPlan}', 'store')->name('reviews.store');
+    Route::get('/reviews/{review}/edit', 'edit')->name('reviews.edit');
+    Route::put('/reviews/{review}', 'update')->name('reviews.update');
 });
