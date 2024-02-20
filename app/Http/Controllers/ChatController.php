@@ -34,10 +34,10 @@ class ChatController extends Controller
 
     public function chatRooms_store(Request $request)
     {
-        $chat = new Chat();
-        $chat->founder_id = Auth::id();
-        $chat->friend_id = $request->input('friend_id');
-        $chat->save();
+        $chatRoom = new ChatRoom();
+        $chatRoom->founder_id = Auth::id();
+        $chatRoom->friend_id = $request->input('friend_id');
+        $chatRoom->save();
 
         return to_route('chats.show');
     }
@@ -48,7 +48,26 @@ class ChatController extends Controller
 
         $chats = Chat::where('chat_room_id', '=', $chatRoomId)->get();
 
-        return view('chats.show', compact('chats'));
+        return view('chats.show', compact('chats', 'chatRoom'));
+    }
+
+    public function chats_store(Request $request, ChatRoom $chatRoom)
+    {
+        $chat = new Chat();
+        $chat->chat_room_id = $chatRoom->id;
+        $chat->sender_id = Auth::id();
+        $chat->receiver_id = $request->input('receiver_id');
+        $chat->content = $request->input('content');
+        $chat->save();
+
+        return redirect()->back();
+    }
+
+    public function chat_rooms_destroy(ChatRoom $chatRoom)
+    {
+        $chatRoom->delete();
+
+        return redirect()->back();
     }
 
     public function update(Chat $chat, Request $request)

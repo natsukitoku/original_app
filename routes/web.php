@@ -97,8 +97,10 @@ Route::controller(CommentController::class)->group(function () {
 Route::controller(ChatController::class)->group(function () {
     Route::get('/chats', 'index')->name('chats.index');
     Route::get('/chats/create', 'create')->name('chats.create');
-    Route::post('/chats', 'chatRooms_store')->name('chatRooms.store');
+    Route::post('/chatRooms', 'chatRooms_store')->name('chatRooms.store');
     Route::get('/chats/{chatRoom}/show', 'show')->name('chats.show');
+    Route::post('/chats/{chatRoom}', 'chats_store')->name('chats.store');
+    Route::delete('chatRooms/{chatRoom}', 'chat_rooms_destroy')->name('chatRooms.destroy');
 });
 
 Route::controller(ReviewController::class)->group(function () {

@@ -7,15 +7,15 @@
             <div>
                 <a class="back" href="{{ route('home') }}">&lt;戻る</a>
             </div>
-            <div>
+            <div style="margin-top: 16px">
                 <a class="link link-menu" href="{{ route('tweets.create') }}" style="margin-right: 24px">つぶやく<i
                         class="far fa-comment" style="margin-left: 4px"></i></a>
                 <a class="link link-menu" href="{{ route('follows.search_friends') }}">新しい友達を探す
                     <i class="fas fa-user-plus"></i>
                 </a>
             </div>
-            <div>
-                <a href="{{route('chats.index')}}">チャットルーム一覧</a>
+            <div style="margin-top: 16px">
+                <a href="{{route('chats.index')}}">チャットルーム一覧へ</a>
             </div>
         </div>
         <div style="margin: 24px">
