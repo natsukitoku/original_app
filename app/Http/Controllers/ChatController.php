@@ -39,7 +39,7 @@ class ChatController extends Controller
         $chatRoom->friend_id = $request->input('friend_id');
         $chatRoom->save();
 
-        return to_route('chats.show');
+        return to_route('chats.show', compact('chatRoom'));
     }
 
     public function show(ChatRoom $chatRoom)

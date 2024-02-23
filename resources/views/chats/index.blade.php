@@ -7,13 +7,14 @@
             <a class="back" href="{{ route('tweets.index') }}">&lt;戻る</a>
         </div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createchats">
+        <button style="border:1px solid black" type="button" class="btn" data-bs-toggle="modal"
+            data-bs-target="#createchats">
             新しいチャットを作成
         </button>
-        <div style="margin-top: 24px">
+        <div style="width:480px;margin:32px auto">
             <ul>
                 @foreach ($myChatRooms as $chatRoom)
-                    <div style="display: flex">
+                    <div style="display: flex; justify-content:space-between;">
                         @php
                             if ($chatRoom->founder_id == Auth::id()) {
                                 $userId = $chatRoom->friend_id;
@@ -27,8 +28,9 @@
                             }
                         @endphp
                         @if ($user->id !== Auth::id())
-                            <li>{{ $user->name }}
-                                <a href="{{ route('chats.show', $chatRoom) }}">チャットルームへ</a>
+                            <li style="list-style: none">
+                                <a style="text-decoration-line: none; font-size:16px"
+                                    href="{{ route('chats.show', $chatRoom) }}">{{ $user->name }}</a>
                             </li>
                         @endif
                         <div style="margin-left: 16px">
@@ -42,6 +44,7 @@
                             </form>
                         </div>
                     </div>
+                    <hr>
                 @endforeach
             </ul>
         </div>

@@ -19,10 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
             $table->foreign('chat_room_id')
-            ->references('id')->on('chat_rooms');
-            $table->foreign('sender_id')->references('id')->on('users');
-            $table->foreign('receiver_id')->references('id')->on('users');
+            ->references('id')->on('chat_rooms')->cascadeOnDelete();
+            $table->foreign('sender_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('receiver_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('content')->default("");
+            $table->tinyInteger('watched')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
